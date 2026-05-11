@@ -1,0 +1,49 @@
+/* ============================================================
+   TODO: 自定义关于我们内容
+   - 修改下方文案段落
+   - 修改 STATS 数组中的数字和标签
+   ============================================================ */
+const STATS: { value: string; label: string }[] = [
+  { value: "2023", label: "成立年份" },
+  { value: "6+", label: "覆盖行业" },
+  { value: "10+", label: "完成项目" },
+];
+
+export default function About() {
+  return (
+    <section id="about" className="py-20 md:py-24 bg-surface">
+      <div className="max-w-content mx-auto px-6">
+        <div className="mb-14 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-semibold tracking-tight leading-tight">
+            关于我们
+          </h2>
+          <p className="text-base sm:text-lg text-secondary max-w-[600px] mt-4 leading-relaxed">
+            我们相信好的软件来自对业务的深刻理解，而非技术的堆砌。
+          </p>
+        </div>
+
+        <div className="max-w-[700px]">
+          <p className="text-lg text-secondary leading-loose mb-6">
+            太微工作室成立于 2023 年 5 月，面向信息技术产业发展的行业需求，聚焦软件开发，通过
+            ORU 模式将信息技术与产业实践结合，推动校企合作与科研创新。
+          </p>
+          <p className="text-lg text-secondary leading-loose mb-6">
+            产品与解决方案已应用于教育、工业、航空、考古、安全、医疗和康养等多个业务领域，持续推动区域智能化实体经济发展。
+          </p>
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-8 mt-12">
+            {STATS.map((s) => (
+              <div key={s.label}>
+                <div className="text-3xl sm:text-4xl font-semibold tracking-tight">
+                  {s.value}
+                </div>
+                <div className="text-sm text-secondary mt-1">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
