@@ -11,6 +11,8 @@ import AnimateOnScroll from "./AnimateOnScroll";
    - 想替换占位图为真实截图时，加 image 字段:
        image: "/cases/project1.png"
      图片放到 public/cases/ 下；保留 gradient 作为图片背景框色。
+   - 有图时建议写 imageAspect，与截图宽高比一致（如 aspect-[800/400]），
+     配合 object-contain 可填满画框、避免上下留白。
    - tags / highlights 可自由增减
    ============================================================ */
 const CASES: {
@@ -20,8 +22,25 @@ const CASES: {
   tags: string[];
   gradient: string;
   image?: string;
+  /** 与图片像素宽高比一致时，object-contain 可铺满不留边 */
+  imageAspect?: string;
   highlights?: string[];
 }[] = [
+  {
+    title: "声发射工业检测平台",
+    subtitle: "工业安全 · IoT + AI",
+    desc: "依托声发射无损感知技术，融合 AI 智能算法与物联网实时传输，全天候在线监测压力容器、管道、风电等工业核心设备。精准捕捉早期微裂纹、疲劳损伤、腐蚀隐患。",
+    tags: ["AI", "IoT", "Java", "Flink", "Kafka", "实时监测", "无损检测", ],
+    gradient: "from-slate-500 to-zinc-700",
+    image: "/cases/acoustic-emission.jpg",
+    imageAspect: "aspect-[2643/1568]",
+    highlights: [
+      "无损不停机检测",
+      "AI 降噪识别算法",
+      "24h 在线云监测",
+      "多行业适配",
+    ],
+  },
   {
     title: "中医经络虚拟仿真教学平台",
     subtitle: "高校中医专业 · 3D 交互教学",
@@ -29,6 +48,7 @@ const CASES: {
     tags: ["Three.js", "WebGL", "3D 可视化"],
     gradient: "from-stone-100 to-amber-50",
     image: "/cases/meridian.png",
+    imageAspect: "aspect-[800/400]",
     highlights: ["3D 经络模型交互", "在线答题系统", "智慧树平台上线"],
   },
   {
@@ -38,43 +58,22 @@ const CASES: {
     tags: ["React", "Node.js", "数据分析"],
     gradient: "from-teal-50 to-emerald-50",
     image: "/cases/questionnaire.png",
+    imageAspect: "aspect-[1024/433]",
     highlights: ["多题型 + 逻辑跳转", "自定义皮肤与报告", "本地化部署支持"],
   },
   {
-    title: "私人志愿定制平台",
-    subtitle: "招生办 · 微信小程序",
-    desc: "为高考学生推荐符合分数要求、自身兴趣等维度的定制化志愿方案，并提供专业就业薪资、就业前景等数据分析功能。",
-    tags: ["微信小程序", "推荐算法", "数据分析"],
-    gradient: "from-amber-400 to-orange-500",
-    highlights: ["多维度志愿推荐", "就业前景分析", "小程序全端适配"],
-  },
-  {
-    title: "学生创业孵化平台",
-    subtitle: "高校创业服务 · 综合平台",
-    desc: "通过信息通讯技术为有创业需求的人员提供创业课程、活动培训和创业大赛等模块的一站式信息服务和数据资源共享。",
-    tags: ["Vue.js", "Spring Boot", "平台开发"],
-    gradient: "from-emerald-400 to-teal-500",
-    highlights: ["一站式创业服务", "课程与赛事管理", "多角色权限体系"],
-  },
-  {
-    title: "高校绩效考核检测与分析系统",
-    subtitle: "高校管理 · 数据系统",
-    desc: "基于激励和目标管理理论，建立科学的绩效考核体系和指标体系，实现教师能力提升、人才管理改善和学校核心竞争力增强。",
-    tags: ["数据可视化", "管理系统", "指标体系"],
-    gradient: "from-sky-400 to-blue-500",
-    highlights: ["科学指标体系", "多维绩效分析", "可视化报表"],
-  },
-  {
-    title: "声发射工业检测平台",
-    subtitle: "工业安全 · IoT + AI",
-    desc: "依托声发射无损感知技术，融合 AI 智能算法与物联网实时传输，全天候在线监测压力容器、管道、风电等工业核心设备。精准捕捉早期微裂纹、疲劳损伤、腐蚀隐患。",
-    tags: ["AI", "IoT", "实时监测", "无损检测"],
-    gradient: "from-slate-500 to-zinc-700",
+    title: "厂区空气污染精准溯源管控系统",
+    subtitle: "工业环保 · 智能监测平台",
+    desc: "面向钢铁等工业园区构建的大气环境数字化管控平台，融合空地一体化监测、大气扩散建模与 AI 溯源分析，实现污染源识别、分级预警与工单闭环处置，将厂区打造为绿色、清洁、智能生产的标杆。",
+    tags: ["GIS 可视化", "扩散建模", "AI 溯源", "实时监测", "工单闭环"],
+    gradient: "from-sky-50 to-blue-50",
+    image: "/cases/air-quality.png",
+    imageAspect: "aspect-[934/677]",
     highlights: [
-      "无损不停机检测",
-      "AI 降噪识别算法",
-      "24h 在线云监测",
-      "多行业适配",
+      "全要素污染物可视化",
+      "多维度精准溯源诊断",
+      "分级预警多渠道推送",
+      "工单派发与闭环追溯",
     ],
   },
 ];
@@ -111,25 +110,27 @@ export default function CasesPage() {
                   i % 2 === 1 ? "md:[direction:rtl]" : ""
                 }`}
               >
-                {/* Image / Placeholder — Polecat style: image fills rounded card */}
-                <div
-                  className={`relative rounded-[20px] bg-gradient-to-br ${c.gradient} overflow-hidden ${
-                    i % 2 === 1 ? "[direction:ltr]" : ""
-                  }`}
-                >
+                {/* Image / Placeholder — 圆角图片 + 细黑边 */}
+                <div className={i % 2 === 1 ? "[direction:ltr]" : ""}>
                   {c.image ? (
-                    <div className="relative aspect-[16/10] m-3 md:m-4 rounded-xl overflow-hidden bg-white/90">
+                    <div
+                      className={`relative w-full overflow-hidden rounded-2xl ring-1 ring-black/80 ${
+                        c.imageAspect ?? "aspect-[16/10]"
+                      }`}
+                    >
                       <Image
                         src={c.image}
                         alt={c.title}
                         fill
                         sizes="(min-width: 768px) 50vw, 100vw"
-                        className="object-contain"
+                        className="object-cover"
                       />
                     </div>
                   ) : (
-                    <div className="aspect-[4/3] flex items-center justify-center">
-                      <span className="text-white/70 text-sm font-medium">
+                    <div
+                      className={`relative w-full aspect-[4/3] rounded-2xl ring-1 ring-black/80 bg-gradient-to-br ${c.gradient} flex items-center justify-center`}
+                    >
+                      <span className="text-white/80 text-sm font-medium">
                         项目截图
                       </span>
                     </div>
