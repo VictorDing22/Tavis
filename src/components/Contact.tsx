@@ -46,11 +46,11 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24 md:py-32">
+    <section id="contact" className="py-24 md:py-32 bg-white">
       <div className="max-w-content mx-auto px-6">
         <AnimateOnScroll>
           <div className="text-center mb-16 md:mb-20">
-            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-semibold tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-semibold tracking-tight leading-tight text-primary">
               联系我们
             </h2>
             <p className="text-base sm:text-lg text-secondary mt-4">
@@ -71,7 +71,7 @@ export default function Contact() {
                   required
                   placeholder="您的姓名"
                   autoComplete="name"
-                  className="w-full px-4 py-3.5 border border-border rounded-xl text-base bg-white focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 transition-all"
+                  className="w-full px-4 py-3.5 border border-border rounded-xl text-base bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/5 transition-all"
                 />
               </div>
               <div className="mb-6">
@@ -82,7 +82,7 @@ export default function Contact() {
                   required
                   placeholder="your@email.com"
                   autoComplete="email"
-                  className="w-full px-4 py-3.5 border border-border rounded-xl text-base bg-white focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 transition-all"
+                  className="w-full px-4 py-3.5 border border-border rounded-xl text-base bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/5 transition-all"
                 />
               </div>
               <div className="mb-6">
@@ -91,7 +91,7 @@ export default function Contact() {
                 </label>
                 <select
                   name="projectType"
-                  className="w-full px-4 py-3.5 border border-border rounded-xl text-base bg-white focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 transition-all appearance-none"
+                  className="w-full px-4 py-3.5 border border-border rounded-xl text-base bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/5 transition-all appearance-none"
                 >
                   <option>Web 系统与网站开发</option>
                   <option>移动应用开发</option>
@@ -110,14 +110,14 @@ export default function Contact() {
                   required
                   rows={5}
                   placeholder="简单描述您的项目需求..."
-                  className="w-full px-4 py-3.5 border border-border rounded-xl text-base bg-white focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 transition-all resize-vertical min-h-[120px]"
+                  className="w-full px-4 py-3.5 border border-border rounded-xl text-base bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/5 transition-all resize-vertical min-h-[120px]"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-gradient-to-r from-accent to-purple-500 text-white text-sm font-medium hover:shadow-lg hover:shadow-accent/25 active:scale-[0.98] transition-all min-h-[52px] disabled:opacity-60 disabled:pointer-events-none"
+                className="w-full inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-primary text-white text-sm font-medium hover:bg-neutral-800 active:scale-[0.98] transition-all min-h-[52px] disabled:opacity-60 disabled:pointer-events-none"
               >
                 {status === "loading" ? (
                   <>
@@ -182,7 +182,7 @@ function ContactItem({
 }) {
   return (
     <div className="flex items-start gap-4">
-      <div className="w-10 h-10 rounded-lg bg-accent/5 flex items-center justify-center text-accent shrink-0">
+      <div className="w-10 h-10 rounded-lg bg-surface flex items-center justify-center text-secondary shrink-0">
         {icon}
       </div>
       <div>

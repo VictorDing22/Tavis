@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 const NAV_ITEMS = [
-  { label: "服务", href: "#services" },
-  { label: "案例", href: "#cases" },
-  { label: "团队", href: "#team" },
-  { label: "关于", href: "#about" },
-  { label: "联系", href: "#contact" },
+  { label: "服务", href: "/#services" },
+  { label: "案例", href: "/cases" },
+  { label: "关于", href: "/team" },
+  { label: "联系", href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -33,20 +33,20 @@ export default function Navbar() {
     >
       <div className="max-w-content mx-auto px-6 flex items-center justify-between h-16">
         {/* ── TODO: 替换为你的 Logo 图片或自定义品牌名 ── */}
-        <a
-          href="#"
+        <Link
+          href="/"
           className={`text-xl font-semibold tracking-tight whitespace-nowrap transition-colors duration-500 ${
             scrolled ? "text-primary" : "text-white"
           }`}
         >
           太微工作室
-        </a>
+        </Link>
 
         {/* Desktop */}
         <ul className="hidden md:flex gap-8">
           {NAV_ITEMS.map((item) => (
             <li key={item.href}>
-              <a
+              <Link
                 href={item.href}
                 className={`text-sm font-medium transition-colors duration-300 ${
                   scrolled
@@ -55,7 +55,7 @@ export default function Navbar() {
                 }`}
               >
                 {item.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -76,14 +76,14 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden absolute top-16 left-0 right-0 bg-white border-b border-border shadow-lg px-6 py-2">
           {NAV_ITEMS.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               onClick={handleClick}
               className="flex items-center h-12 text-[15px] font-medium text-secondary border-b border-border last:border-b-0 active:text-primary"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </div>
       )}

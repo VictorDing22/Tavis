@@ -1,8 +1,11 @@
+import Link from "next/link";
+
 const FOOTER_LINKS = [
-  { label: "首页", href: "#" },
-  { label: "案例", href: "#cases" },
-  { label: "服务", href: "#services" },
-  { label: "联系", href: "#contact" },
+  { label: "首页", href: "/" },
+  { label: "案例", href: "/cases" },
+  { label: "服务", href: "/#services" },
+  { label: "关于", href: "/team" },
+  { label: "联系", href: "/#contact" },
 ];
 
 export default function Footer() {
@@ -18,13 +21,13 @@ export default function Footer() {
           </div>
           <div className="flex gap-6">
             {FOOTER_LINKS.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 className="text-sm text-neutral-500 hover:text-white transition-colors"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

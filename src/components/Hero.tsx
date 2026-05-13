@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 /* ============================================================
    TODO: 自定义首屏轮播图片
@@ -121,13 +122,13 @@ export default function Hero() {
             variants={item}
             className="mt-10 flex flex-col sm:flex-row gap-4"
           >
-            <a
-              href="#cases"
+            <Link
+              href="/cases"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-accent to-purple-500 text-white text-sm font-medium hover:shadow-lg hover:shadow-accent/30 active:scale-[0.98] transition-all min-h-[52px]"
             >
               查看案例
               <ArrowRight size={16} />
-            </a>
+            </Link>
             <a
               href="#contact"
               className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-white text-sm font-medium hover:bg-white/10 active:scale-[0.98] transition-all min-h-[52px]"
@@ -165,7 +166,7 @@ export default function Hero() {
         )}
       </div>
 
-      {/* Bottom fade */}
+      {/* Bottom fade to About (white) */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent z-10" />
     </section>
   );
