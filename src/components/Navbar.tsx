@@ -16,7 +16,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
+    const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -25,9 +25,9 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-xl border-b border-border"
+          ? "bg-white/90 backdrop-blur-xl border-b border-border shadow-sm"
           : "bg-transparent"
       }`}
     >
@@ -35,7 +35,9 @@ export default function Navbar() {
         {/* ── TODO: 替换为你的 Logo 图片或自定义品牌名 ── */}
         <a
           href="#"
-          className="text-xl font-semibold tracking-tight text-primary whitespace-nowrap"
+          className={`text-xl font-semibold tracking-tight whitespace-nowrap transition-colors duration-500 ${
+            scrolled ? "text-primary" : "text-white"
+          }`}
         >
           太微工作室
         </a>
@@ -46,7 +48,11 @@ export default function Navbar() {
             <li key={item.href}>
               <a
                 href={item.href}
-                className="text-sm font-medium text-secondary hover:text-primary transition-colors"
+                className={`text-sm font-medium transition-colors duration-300 ${
+                  scrolled
+                    ? "text-secondary hover:text-primary"
+                    : "text-white/70 hover:text-white"
+                }`}
               >
                 {item.label}
               </a>
@@ -56,7 +62,9 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden flex items-center justify-center w-11 h-11"
+          className={`md:hidden flex items-center justify-center w-11 h-11 transition-colors ${
+            scrolled ? "text-primary" : "text-white"
+          }`}
           onClick={() => setOpen(!open)}
           aria-label="菜单"
         >

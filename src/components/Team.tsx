@@ -1,3 +1,7 @@
+"use client";
+
+import AnimateOnScroll from "./AnimateOnScroll";
+
 /* ============================================================
    TODO: 自定义团队成员
    1. 修改 MEMBERS 数组增删改成员
@@ -33,30 +37,43 @@ const MEMBERS: {
 
 export default function Team() {
   return (
-    <section id="team" className="py-20 md:py-24">
+    <section id="team" className="py-24 md:py-32">
       <div className="max-w-content mx-auto px-6">
-        <div className="mb-14 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-semibold tracking-tight leading-tight">
-            团队成员
-          </h2>
-          <p className="text-base sm:text-lg text-secondary max-w-[600px] mt-4 leading-relaxed">
-            以校级科研团队和优秀学生为基础，校内外教授、高工担任专家顾问，与多家行业名企达成战略合作。
-          </p>
-        </div>
+        <AnimateOnScroll>
+          <div className="mb-16 md:mb-20">
+            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-semibold tracking-tight leading-tight">
+              团队成员
+            </h2>
+            <p className="text-base sm:text-lg text-secondary max-w-[600px] mt-4 leading-relaxed">
+              以校级科研团队和优秀学生为基础，校内外教授、高工担任专家顾问，与多家行业名企达成战略合作。
+            </p>
+          </div>
+        </AnimateOnScroll>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {MEMBERS.map((m, i) => (
-            <div key={i} className="group">
-              {/* 头像占位 — TODO: 替换为 <Image src={m.image} /> */}
-              <div
-                className={`aspect-[4/3] rounded-2xl bg-gradient-to-br ${m.gradient} flex items-center justify-center mb-4 overflow-hidden`}
-              >
-                <span className="text-white font-medium text-sm">头像</span>
+            <AnimateOnScroll key={i} delay={i * 0.1}>
+              <div className="group relative">
+                {/* 头像占位 — TODO: 替换为 <Image src={m.image} /> */}
+                <div
+                  className={`relative aspect-[4/3] rounded-2xl bg-gradient-to-br ${m.gradient} overflow-hidden mb-5`}
+                >
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-white font-medium text-sm">
+                      头像
+                    </span>
+                  </div>
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-400 flex items-end p-6">
+                    <p className="text-white text-sm leading-relaxed opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-400">
+                      {m.desc}
+                    </p>
+                  </div>
+                </div>
+                <h3 className="text-lg font-semibold">{m.name}</h3>
+                <p className="text-sm text-accent mt-0.5">{m.role}</p>
               </div>
-              <h3 className="text-lg font-semibold">{m.name}</h3>
-              <p className="text-sm text-secondary mt-0.5 mb-2">{m.role}</p>
-              <p className="text-sm text-secondary leading-relaxed">{m.desc}</p>
-            </div>
+            </AnimateOnScroll>
           ))}
         </div>
       </div>

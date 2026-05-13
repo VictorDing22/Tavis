@@ -1,3 +1,8 @@
+"use client";
+
+import AnimateOnScroll from "./AnimateOnScroll";
+import { motion } from "framer-motion";
+
 /* ============================================================
    TODO: 自定义案例内容
    - 修改 CASES 数组增删改案例
@@ -58,11 +63,11 @@ const CASES: {
 
 export default function Cases() {
   return (
-    <section id="cases" className="py-20 md:py-24">
+    <section id="cases" className="py-24 md:py-32">
       <div className="max-w-content mx-auto px-6">
         {/* Header */}
-        <div className="flex flex-wrap items-end justify-between gap-4 mb-14 md:mb-16">
-          <div>
+        <AnimateOnScroll>
+          <div className="mb-16 md:mb-20">
             <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-semibold tracking-tight leading-tight">
               精选案例
             </h2>
@@ -70,41 +75,54 @@ export default function Cases() {
               我们与客户合作，为真实业务场景提供技术解决方案。
             </p>
           </div>
-          {/* TODO: 如有案例详情页，可在此处添加链接 */}
-        </div>
+        </AnimateOnScroll>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {CASES.map((c) => (
-            <div key={c.title} className="group">
-              {/* 占位图 — TODO: 替换为真实项目截图 <Image src={c.image} /> */}
-              <div
-                className={`aspect-[4/3] rounded-2xl bg-gradient-to-br ${c.gradient} flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-[1.02] overflow-hidden`}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {CASES.map((c, i) => (
+            <AnimateOnScroll key={c.title} variant="scale-up" delay={i * 0.07}>
+              <motion.div
+                className="group cursor-default"
+                whileHover="hover"
               >
-                <span className="text-white/80 text-sm font-medium">
-                  项目截图
-                </span>
-              </div>
-              <p className="text-xs uppercase tracking-widest text-secondary mb-1.5">
-                {c.category}
-              </p>
-              <h3 className="text-lg font-semibold mb-1.5 group-hover:text-secondary transition-colors">
-                {c.title}
-              </h3>
-              <p className="text-sm text-secondary leading-relaxed mb-3">
-                {c.desc}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {c.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs px-2.5 py-1 rounded-full bg-surface border border-border text-secondary"
+                {/* 占位图 — TODO: 替换为真实项目截图 <Image src={c.image} /> */}
+                <div
+                  className={`relative aspect-[4/3] rounded-2xl bg-gradient-to-br ${c.gradient} overflow-hidden mb-5`}
+                >
+                  <motion.div
+                    className="absolute inset-0 flex items-center justify-center"
+                    variants={{
+                      hover: { scale: 1.08 },
+                    }}
+                    transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
                   >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
+                    <span className="text-white/70 text-sm font-medium">
+                      项目截图
+                    </span>
+                  </motion.div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                </div>
+                <p className="text-xs uppercase tracking-widest text-accent font-medium mb-2">
+                  {c.category}
+                </p>
+                <h3 className="text-lg font-semibold mb-2 group-hover:text-accent transition-colors duration-300">
+                  {c.title}
+                </h3>
+                <p className="text-sm text-secondary leading-relaxed mb-3">
+                  {c.desc}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {c.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs px-2.5 py-1 rounded-full bg-accent/5 border border-accent/10 text-accent"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            </AnimateOnScroll>
           ))}
         </div>
       </div>

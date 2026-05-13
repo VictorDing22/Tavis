@@ -11,9 +11,18 @@ const config: Config = {
       colors: {
         primary: "#0a0a0a",
         secondary: "#737373",
-        accent: "#2563eb",
+        accent: {
+          DEFAULT: "#6366f1",
+          light: "#818cf8",
+          dark: "#4f46e5",
+        },
         surface: "#fafafa",
         border: "#e5e5e5",
+        dark: {
+          DEFAULT: "#0a0a0a",
+          card: "#141414",
+          muted: "#1a1a1a",
+        },
       },
       fontFamily: {
         sans: [
@@ -29,15 +38,6 @@ const config: Config = {
       },
       maxWidth: {
         content: "1200px",
-      },
-      keyframes: {
-        "fade-in-up": {
-          "0%": { opacity: "0", transform: "translateY(24px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-      },
-      animation: {
-        "fade-in-up": "fade-in-up 0.6s ease-out forwards",
       },
     },
   },
