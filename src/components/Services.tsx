@@ -11,11 +11,7 @@ import {
 import type { ReactNode } from "react";
 import AnimateOnScroll from "./AnimateOnScroll";
 
-/* ============================================================
-   TODO: 自定义服务内容
-   修改下方 SERVICES 数组即可增删改服务卡片，
-   页面会自动适配任意数量（1~6 张卡片均可正常展示）。
-   ============================================================ */
+
 const SERVICES: { icon: ReactNode; title: string; desc: string }[] = [
   {
     icon: <Globe className="w-7 h-7" strokeWidth={1.5} />,

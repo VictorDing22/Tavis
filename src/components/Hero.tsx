@@ -6,12 +6,7 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-/* ============================================================
-   TODO: 自定义首屏轮播图片
-   - 替换 / 增加 public/hero/ 下的图片
-   - 修改下方 SLIDES 数组（数量任意，会自动循环）
-   - SLIDE_DURATION_MS 控制每张图停留时长（毫秒）
-   ============================================================ */
+
 const SLIDES = ["/hero/slide-1.png", "/hero/slide-2.png"];
 const SLIDE_DURATION_MS = 6000;
 

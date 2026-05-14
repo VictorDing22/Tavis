@@ -2,6 +2,7 @@
 
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import AnimateOnScroll from "./AnimateOnScroll";
 
 /* ============================================================
@@ -16,27 +17,92 @@ const TEAM_MEMBERS: {
   bio: string;
   skills: string[];
   gradient: string;
+  image?: string;
 }[] = [
   {
-    name: "成员姓名",
-    role: "创始人 / 全栈工程师",
-    bio: "负责工作室整体技术方向与架构设计，多年项目开发与管理经验。专注于系统架构设计、技术选型与团队管理，推动工作室从零到一的技术体系建设。",
-    skills: ["架构设计", "项目管理", "React", "Node.js", "Python"],
-    gradient: "from-indigo-500 to-purple-600",
+    name: "张迪",
+    role: "项目指导",
+    bio: "以系统化教学改革为抓手，推动人才培养模式向能力本位、实践导向升级。主持或参与十余项教改与科研项目，在教学管理、科研组织与项目统筹方面经验丰富；长期深耕科研产出，发表多篇相关学术论文。现任西安欧亚学院科研与社会服务委员会委员，为工作室提供教研与项目层面的专业指导。",
+    skills: [
+      "教学改革",
+      "人才培养",
+      "项目统筹",
+      "科研管理",
+      "教学管理",
+      "教改课题",
+      "学术论文",
+    ],
+    gradient: "from-amber-200 to-rose-200",
+    image: "/team/zhang-di.png",
   },
   {
-    name: "成员姓名",
-    role: "前端负责人",
-    bio: "专注前端工程化与用户体验，熟悉 React / Vue 生态及小程序开发。追求极致的交互体验与代码质量，负责工作室所有面向用户端的产品交付。",
-    skills: ["React", "Vue.js", "TypeScript", "小程序", "Three.js"],
+    name: "定赛尔",
+    role: "全栈工程师",
+    bio: "全栈交付：熟悉 React / Next.js / Vue 与 TypeScript 工程化，覆盖小程序与 Three.js 等前端场景。后端侧重高并发与分布式设计，使用 Spring Boot / Node.js，结合 Kafka、Flink 与 MySQL / Redis 等做性能与数据链路优化。熟悉 RAG、向量检索与 LangChain 等大模型应用落地，并负责 Docker、K8s 与 CI/CD 部署保障稳定运行。",
+    skills: [
+      "React",
+      "Next.js",
+      "Vue.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Vite",
+      "Webpack",
+      "Three.js",
+      "微信小程序",
+      "Node.js",
+      "Java",
+      "Spring Boot",
+      "Python",
+      "golang",
+      "高并发架构",
+      "Kafka",
+      "Flink",
+      "MySQL",
+      "PostgreSQL",
+      "Redis",
+      "gRPC",
+      "RAG",
+      "LangChain",
+      "向量检索",
+      "LLM API",
+      "Docker",
+      "Kubernetes",
+      "CI/CD",
+    ],
     gradient: "from-pink-400 to-rose-500",
+    image: "/team/dingsaier.png",
   },
   {
-    name: "成员姓名",
-    role: "后端工程师",
-    bio: "擅长高并发系统设计、数据库优化与第三方系统集成。负责后端架构搭建与性能调优，确保系统在高负载下的稳定运行。",
-    skills: ["Java", "Spring Boot", "MySQL", "Redis", "微服务"],
-    gradient: "from-sky-400 to-cyan-400",
+    name: "孙淑海",
+    role: "全栈工程师",
+    bio: "全栈交付：精通全栈开发，熟悉前后端开发与服务部署，智能体开发，具备从需求梳理→原型设计→算法逻辑开发→前后端代码编写→联调测试→线上部署→项目全流程交付一站式落地能力，可独立承接全栈项目开发、功能定制、算法适配与成品交付，高效完成从技术方案到商业成品的完整落地。",
+    skills: [
+      "Vue.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Vite",
+      "Webpack",
+      "Three.js",
+      "微信小程序",
+      "Node.js",
+      "Java",
+      "Spring Boot",
+      "Python",
+      "高并发架构",
+      "Kafka",
+      "Flink",
+      "MySQL",
+      "TDengine",
+      "HBase",
+      "Redis",
+      "gRPC",
+      "RAG",
+      "Docker",
+      "Kubernetes",
+      "CI/CD",
+    ],
+    gradient: "from-pink-400 to-rose-500",
+    image: "/team/sun-shuhai.png",
   },
 ];
 
@@ -89,13 +155,32 @@ export default function TeamPage() {
                   }`}
                   style={i % 2 === 1 ? { direction: "rtl" } : undefined}
                 >
-                  {/* Avatar */}
+                  {/* Avatar — 统一正方形外框，照片居中裁切 */}
                   <div
                     style={{ direction: "ltr" }}
-                    className={`aspect-[4/3] rounded-2xl bg-gradient-to-br ${member.gradient} flex items-center justify-center overflow-hidden`}
+                    className="mx-auto w-full max-w-[260px] sm:max-w-[280px] md:max-w-[300px]"
                   >
-                    {/* TODO: 替换为 <Image src={member.image} /> */}
-                    <span className="text-white font-medium">头像</span>
+                    <div
+                      className={`relative aspect-square w-full rounded-2xl overflow-hidden ring-1 ring-black/80 ${
+                        member.image
+                          ? "bg-neutral-100"
+                          : `bg-gradient-to-br ${member.gradient} flex items-center justify-center`
+                      }`}
+                    >
+                      {member.image ? (
+                        <Image
+                          src={member.image}
+                          alt={member.name}
+                          fill
+                          sizes="(max-width: 640px) 260px, (max-width: 1024px) 280px, 300px"
+                          className="object-cover object-center"
+                        />
+                      ) : (
+                        <span className="text-white font-medium text-sm">
+                          头像
+                        </span>
+                      )}
+                    </div>
                   </div>
 
                   {/* Info */}

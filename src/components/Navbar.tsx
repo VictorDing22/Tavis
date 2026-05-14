@@ -32,7 +32,6 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-content mx-auto px-6 flex items-center justify-between h-16">
-        {/* ── TODO: 替换为你的 Logo 图片或自定义品牌名 ── */}
         <Link
           href="/"
           className={`text-xl font-semibold tracking-tight whitespace-nowrap transition-colors duration-500 ${

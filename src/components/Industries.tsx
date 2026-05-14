@@ -12,10 +12,6 @@ import {
 import type { ReactNode } from "react";
 import AnimateOnScroll from "./AnimateOnScroll";
 
-/* ============================================================
-   TODO: 自定义行业列表
-   增删改 INDUSTRIES 数组即可，页面自动适配任意数量。
-   ============================================================ */
 const INDUSTRIES: { icon: ReactNode; label: string }[] = [
   { icon: <GraduationCap size={28} />, label: "教育" },
   { icon: <Factory size={28} />, label: "工业" },

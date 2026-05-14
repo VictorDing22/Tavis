@@ -147,21 +147,20 @@ export default function Contact() {
           {/* Contact Info */}
           <AnimateOnScroll variant="fade-right" className="order-1 md:order-2">
             <div className="space-y-8">
-              {/* ── TODO: 替换为真实联系信息 ── */}
               <ContactItem
                 icon={<Mail size={20} />}
                 title="邮箱"
-                text="contact@tavis.cn"
+                text="dse0403@163.com"
               />
               <ContactItem
                 icon={<Phone size={20} />}
                 title="电话"
-                text="+86 138 xxxx xxxx"
+                text="+86 153 4925 1783"
               />
               <ContactItem
                 icon={<MapPin size={20} />}
                 title="地址"
-                text="中国 · 待填写城市"
+                text="中国 · 西安"
               />
             </div>
           </AnimateOnScroll>
