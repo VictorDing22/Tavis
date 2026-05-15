@@ -3,15 +3,11 @@
 import AnimateOnScroll from "./AnimateOnScroll";
 import CountUp from "./CountUp";
 
-/* ============================================================
-   TODO: 自定义关于我们
-   - 修改主标题 / 副标题
-   - 修改 STATS 数字
-   ============================================================ */
+
 const STATS: { value: number; suffix: string; label: string }[] = [
   { value: 2023, suffix: "", label: "工作室成立" },
   { value: 7, suffix: "+", label: "覆盖行业领域" },
-  { value: 10, suffix: "+", label: "已交付项目" },
+  { value: 50, suffix: "+", label: "已交付项目" },
   { value: 5, suffix: "+", label: "战略合作企业" },
 ];
 

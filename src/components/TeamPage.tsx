@@ -5,12 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import AnimateOnScroll from "./AnimateOnScroll";
 
-/* ============================================================
-   TODO: 自定义团队成员详细信息
-   1. 修改 TEAM_MEMBERS 数组增删改成员
-   2. 替换 gradient 为真实头像：添加 image 字段
-   3. 可自由添加 skills 标签
-   ============================================================ */
+
 const TEAM_MEMBERS: {
   name: string;
   role: string;
@@ -103,6 +98,95 @@ const TEAM_MEMBERS: {
     ],
     gradient: "from-pink-400 to-rose-500",
     image: "/team/sun-shuhai.png",
+  },
+  {
+    name: "李鑫",
+    role: "前端 / AI 应用开发工程师",
+    bio: "具备前端工程与 AI 应用开发能力，能够完成 Web 应用与基础智能系统的开发实现。前端方向熟悉 React、Vue 与 Next.js，能够进行组件化开发、页面搭建与交互优化，具备一定的工程化与性能优化意识。在 AI 应用方向，能够基于大模型能力进行基础应用开发，同时具备鸿蒙应用开发基础能力，可参与多端应用的功能实现与适配开发。",
+    skills: [
+      "React",
+      "Vue.js",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "微信小程序",
+      "鸿蒙应用开发",
+      "Node.js",
+      "Python",
+      "MySQL",
+      "Redis",
+      "Docker",
+      "Git",
+      "RAG",
+      "LangChain",
+      "LLM API",
+    ],
+    gradient: "from-indigo-500 via-purple-500 to-pink-500",
+    image: "/team/lixin.png",
+  },
+  {
+    name: "翁子衡",
+    role: "后端开发工程师",
+    bio: "具备相关协调开发能力，能够完成 Web、小程序及基础后端服务的开发与联调工作。前端方面熟悉 React、Vue 与 Next.js，能够进行组件化开发与基础交互实现；移动端具备微信小程序开发经验，并了解鸿蒙应用与小程序开发的基础能力。在 AI 应用方向，能够结合大模型能力进行应用层设计与集成",
+    skills: [
+      "React",
+      "Vue.js",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "微信小程序",
+      "鸿蒙应用开发",
+      "Node.js",
+      "Python",
+      "Express",
+      "MySQL",
+      "Redis",
+      "Docker",
+      "Git",
+      "RAG",
+      "LLM API",
+    ],
+    gradient: "from-cyan-500 via-sky-500 to-blue-600",
+    image: "/team/wengziheng.png",
+  },
+  {
+    name: "安姝菲",
+    role: "前端开发 / 测试工程师",
+    bio: "具备前端开发与基础测试能力，能够参与 Web 项目的页面开发与功能验证工作。前端方面熟悉 React 与 Vue，能够完成基础页面搭建与组件开发，配合团队进行界面实现与交互优化。在测试方向，能够进行基础功能测试与问题复现，参与接口与页面的联调验证，保障系统稳定性与基本体验。能够配合完成需求落地与版本迭代。",
+    skills: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Vue.js",
+      "TypeScript",
+      "微信小程序",
+      "基础测试",
+      "功能测试",
+      "接口测试",
+      "Git",
+    ],
+    gradient: "from-pink-400 via-rose-400 to-orange-400",
+    image: "/team/anshufei.png",
+  },
+  {
+    name: "何绍航",
+    role: "后端开发工程师",
+    bio: "前端覆盖 React / Vue 与 Three.js 可视化场景，熟悉 TypeScript 工程化开发。后端以 Java + Spring Boot 为主，结合 MySQL 与 Redis 完成数据层设计与性能优化。了解 RAG 检索增强生成技术栈，具备 Docker 容器化部署经验，持续向全栈方向成长。",
+    skills: [
+      "React",
+      "Vue.js",
+      "Three.js",
+      "TypeScript",
+      "Java",
+      "Spring Boot",
+      "MySQL",
+      "Redis",
+      "RAG",
+      "Docker",
+    ],
+    gradient: "from-blue-400 to-indigo-500",
+    image: "/team/heshaohang.png",
   },
 ];
 
