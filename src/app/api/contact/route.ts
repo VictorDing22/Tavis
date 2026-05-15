@@ -7,8 +7,8 @@ import { Resend } from "resend";
    2. 在 Vercel 项目设置 → Environment Variables 中添加：
       - RESEND_API_KEY = re_xxxxxxxx
       - CONTACT_EMAIL  = 你的接收邮箱
-   3. 如使用自定义发件域名，在 Resend 中验证 tavis.cn 域名后
-      将下方 from 地址改为 noreply@tavis.cn
+   3. 如使用自定义发件域名，在 Resend 中验证 tavis.com.cn 域名后
+      将下方 from 地址改为 noreply@tavis.com.cn
    ============================================================ */
 
 export async function POST(request: Request) {
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
     }
 
     const resend = new Resend(apiKey);
-    const toEmail = process.env.CONTACT_EMAIL || "contact@tavis.cn";
+    const toEmail = process.env.CONTACT_EMAIL || "dse0403@163.com";
 
     await resend.emails.send({
       from: "太微工作室 <onboarding@resend.dev>",
@@ -66,7 +66,7 @@ export async function POST(request: Request) {
             </tr>
           </table>
           <p style="margin-top: 24px; font-size: 12px; color: #a3a3a3;">
-            来自 tavis.cn 网站联系表单
+            来自 www.tavis.com.cn 网站联系表单
           </p>
         </div>
       `,
