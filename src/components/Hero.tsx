@@ -94,7 +94,7 @@ export default function Hero() {
             variants={item}
             className="text-sm tracking-[4px] uppercase text-accent-light mb-6 font-medium"
           >
-            太微工作室 · Tavis Studio
+            奇点工坊 · Singularity Workshop
           </motion.p>
 
           <motion.h1

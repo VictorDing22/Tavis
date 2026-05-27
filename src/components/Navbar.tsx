@@ -38,7 +38,7 @@ export default function Navbar() {
             scrolled ? "text-primary" : "text-white"
           }`}
         >
-          太微工作室
+          奇点工坊
         </Link>
 
         {/* Desktop */}
