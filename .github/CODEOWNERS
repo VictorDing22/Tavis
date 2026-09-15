@@ -1,0 +1,3 @@
+# 全仓库默认 owner：仓库管理员
+# 任何 PR 都会自动请求 VictorDing22 审核，未获批准无法合并
+* @VictorDing22
