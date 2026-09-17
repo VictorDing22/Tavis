@@ -38,7 +38,7 @@ export default function Navbar() {
             scrolled ? "text-primary" : "text-white"
           }`}
         >
-          奇点工坊
+          SuperUnknown
         </Link>
 
         {/* Desktop */}

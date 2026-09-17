@@ -94,7 +94,7 @@ export default function Hero() {
             variants={item}
             className="text-sm tracking-[4px] uppercase text-accent-light mb-6 font-medium"
           >
-            奇点工坊 · Singularity Workshop
+            SuperUnknown · Singularity Workshop
           </motion.p>
 
           <motion.h1

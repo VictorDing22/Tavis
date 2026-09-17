@@ -14,7 +14,7 @@ export default function Footer() {
       <div className="max-w-content mx-auto px-6 pt-12 pb-8">
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-6 mb-8">
           <div className="text-center md:text-left">
-            <h4 className="text-base font-semibold">奇点工坊</h4>
+            <h4 className="text-base font-semibold">SuperUnknown</h4>
             <p className="text-sm text-neutral-500 mt-1">
               聚焦软件开发，构建可靠的数字产品
             </p>
@@ -32,7 +32,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="pt-6 border-t border-white/10 text-sm text-neutral-600 text-center md:text-left">
-          © {new Date().getFullYear()} 奇点工坊. All rights reserved.
+          © {new Date().getFullYear()} SuperUnknown. All rights reserved.
         </div>
       </div>
     </footer>
