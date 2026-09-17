@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
+import CodeTypewriter from "./CodeTypewriter";
 
 const SLIDES = ["/hero/slide-1.png", "/hero/slide-2.png"];
 const SLIDE_DURATION_MS = 6000;
@@ -84,54 +84,69 @@ export default function Hero() {
       />
 
       <div className="relative max-w-content mx-auto px-6 py-32 w-full">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="visible"
-          className="max-w-[800px]"
-        >
-          <motion.p
-            variants={item}
-            className="text-sm tracking-[4px] uppercase text-accent-light mb-6 font-medium"
+        <div className="grid items-center gap-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.95fr)] lg:gap-10 xl:gap-16">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            animate="visible"
+            className="max-w-[720px]"
           >
-            SuperUnknown · Singularity Workshop
-          </motion.p>
+            <motion.p
+              variants={item}
+              className="text-sm tracking-[4px] uppercase text-accent-light mb-6 font-medium"
+            >
+              SuperUnknown · Singularity Workshop
+            </motion.p>
 
-          <motion.h1
-            variants={item}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.08] tracking-tight text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.4)]"
-          >
-            用技术驱动
-            <br />
-            <span className="gradient-text">业务创新</span>
-          </motion.h1>
+            <motion.h1
+              variants={item}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.08] tracking-tight text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.4)]"
+            >
+              用技术驱动
+              <br />
+              <span className="gradient-text">业务创新</span>
+            </motion.h1>
 
-          <motion.p
-            variants={item}
-            className="text-lg sm:text-xl text-neutral-300 max-w-[560px] mt-7 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]"
-          >
-            聚焦软件开发，将信息技术与产业实践结合，为教育、工业、医疗等领域提供可靠的数字化解决方案。
-          </motion.p>
+            <motion.p
+              variants={item}
+              className="text-lg sm:text-xl text-neutral-300 max-w-[560px] mt-7 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]"
+            >
+              聚焦软件开发，将信息技术与产业实践结合，为教育、工业、医疗等领域提供可靠的数字化解决方案。
+            </motion.p>
+
+            <motion.div
+              variants={item}
+              className="mt-10 flex flex-col sm:flex-row gap-4"
+            >
+              <Link
+                href="/cases"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-accent to-purple-500 text-white text-sm font-medium hover:shadow-lg hover:shadow-accent/30 active:scale-[0.98] transition-all min-h-[52px]"
+              >
+                查看案例
+                <ArrowRight size={16} />
+              </Link>
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-white text-sm font-medium hover:bg-white/10 active:scale-[0.98] transition-all min-h-[52px]"
+              >
+                开始合作
+              </a>
+            </motion.div>
+          </motion.div>
 
           <motion.div
-            variants={item}
-            className="mt-10 flex flex-col sm:flex-row gap-4"
+            initial={{ opacity: 0, x: 36 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.55,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
+            className="flex justify-center lg:justify-end"
           >
-            <Link
-              href="/cases"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-accent to-purple-500 text-white text-sm font-medium hover:shadow-lg hover:shadow-accent/30 active:scale-[0.98] transition-all min-h-[52px]"
-            >
-              查看案例
-              <ArrowRight size={16} />
-            </Link>
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-white text-sm font-medium hover:bg-white/10 active:scale-[0.98] transition-all min-h-[52px]"
-            >
-              开始合作
-            </a>
+            <CodeTypewriter />
           </motion.div>
-        </motion.div>
+        </div>
 
         {/* Slide indicators */}
         {SLIDES.length > 1 && (
