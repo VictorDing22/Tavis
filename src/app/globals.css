@@ -26,7 +26,26 @@
   }
 
   .code-flip-card {
+    position: relative;
+    isolation: isolate;
     perspective: 1200px;
+  }
+
+  .code-flip-card::before {
+    content: "";
+    position: absolute;
+    inset: -30px;
+    z-index: -1;
+    border-radius: 44px;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(15, 15, 28, 0.58) 0%,
+      rgba(15, 15, 28, 0.28) 48%,
+      rgba(15, 15, 28, 0.08) 66%,
+      transparent 78%
+    );
+    filter: blur(18px);
+    pointer-events: none;
   }
 
   .code-flip-inner {

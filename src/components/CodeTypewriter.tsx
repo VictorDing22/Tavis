@@ -76,8 +76,8 @@ function WindowControls() {
 
 function CodeWindow({ filename, code }: { filename: string; code: string }) {
   return (
-    <article className="code-window-face overflow-hidden rounded-2xl border border-white/10 bg-[#11111f]/95 shadow-[0_24px_80px_rgba(0,0,0,0.55)] backdrop-blur-xl">
-      <header className="flex h-12 items-center gap-4 border-b border-white/[0.06] bg-[#0d0d19]/90 px-4">
+    <article className="code-window-face overflow-hidden rounded-[22px] border border-white/[0.065] bg-[linear-gradient(145deg,rgba(17,17,31,0.82),rgba(9,9,18,0.7))] shadow-[inset_0_1px_0_rgba(255,255,255,0.045),0_24px_70px_rgba(0,0,0,0.24),0_0_50px_rgba(99,102,241,0.045)] backdrop-blur-2xl">
+      <header className="flex h-12 items-center gap-4 border-b border-white/[0.045] bg-black/10 px-4 backdrop-blur-xl">
         <WindowControls />
         <span className="font-mono text-[11px] text-neutral-500">
           {filename}
