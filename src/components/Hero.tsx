@@ -36,7 +36,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-dark">
+    <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-dark lg:h-[100svh] lg:min-h-[720px]">
       {/* Slideshow */}
       <div className="absolute inset-0">
         <AnimatePresence mode="sync">
