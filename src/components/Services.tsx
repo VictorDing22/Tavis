@@ -7,6 +7,7 @@ import {
   Layers,
   Database,
   Settings,
+  Bot,
 } from "lucide-react";
 import type { ReactNode } from "react";
 import AnimateOnScroll from "./AnimateOnScroll";
@@ -37,6 +38,11 @@ const SERVICES: { icon: ReactNode; title: string; desc: string }[] = [
     icon: <Settings className="w-7 h-7" strokeWidth={1.5} />,
     title: "系统集成与技术咨询",
     desc: "架构评审、技术选型、第三方系统对接、性能调优与代码审查，提供专业技术顾问服务。",
+  },
+  {
+    icon: <Bot className="w-7 h-7" strokeWidth={1.5} />,
+    title: "智能 Agent 应用开发",
+    desc: "定制业务智能体、搭建多 Agent 协作系统，开发 RAG 知识库与自动化任务流程，落地可自主推理执行的 AI 业务应用。",
   },
 ];
 
