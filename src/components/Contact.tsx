@@ -263,6 +263,7 @@ export default function Contact() {
                       <option>企业级应用系统</option>
                       <option>数据库设计与优化</option>
                       <option>系统集成与技术咨询</option>
+                      <option>智能 Agent 应用开发</option>
                       <option>其他</option>
                     </select>
                   </FormField>
