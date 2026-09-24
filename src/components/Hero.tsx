@@ -36,7 +36,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-dark lg:h-[100svh] lg:min-h-[720px]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-dark">
       {/* Slideshow */}
       <div className="absolute inset-0">
         <AnimatePresence mode="sync">
@@ -95,16 +95,17 @@ export default function Hero() {
               variants={item}
               className="text-sm tracking-[4px] uppercase text-accent-light mb-6 font-medium"
             >
-              SuperUnknown · Singularity Workshop
+              SuperUnknown
             </motion.p>
 
             <motion.h1
               variants={item}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.08] tracking-tight text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.4)]"
+              className="text-[2.15rem] sm:text-5xl md:text-[3.5rem] lg:text-[3.25rem] xl:text-[4rem] font-semibold leading-[1.08] tracking-[-0.045em] text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.4)]"
             >
-              用技术驱动
-              <br />
-              <span className="gradient-text">业务创新</span>
+              <span className="block whitespace-nowrap">为没有现成蓝图的</span>
+              <span className="gradient-text mt-[0.08em] block w-fit whitespace-nowrap pr-[0.08em]">
+                思想赋予形态
+              </span>
             </motion.h1>
 
             <motion.p
@@ -116,18 +117,21 @@ export default function Hero() {
 
             <motion.div
               variants={item}
-              className="mt-10 flex flex-col sm:flex-row gap-4"
+              className="mt-10 flex flex-col gap-3 sm:flex-row"
             >
               <Link
                 href="/cases"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-accent to-purple-500 text-white text-sm font-medium hover:shadow-lg hover:shadow-accent/30 active:scale-[0.98] transition-all min-h-[52px]"
+                className="group inline-flex min-h-[54px] min-w-[176px] items-center justify-center gap-2 rounded-full border border-white/80 bg-white px-8 py-4 text-[15px] font-medium text-neutral-950 shadow-[0_14px_40px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-neutral-100 hover:shadow-[0_18px_48px_rgba(0,0,0,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black active:translate-y-0 active:scale-[0.98]"
               >
                 查看案例
-                <ArrowRight size={16} />
+                <ArrowRight
+                  size={16}
+                  className="text-accent transition-transform duration-300 group-hover:translate-x-0.5"
+                />
               </Link>
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-white text-sm font-medium hover:bg-white/10 active:scale-[0.98] transition-all min-h-[52px]"
+                className="inline-flex min-h-[54px] min-w-[176px] items-center justify-center rounded-full border border-white/[0.24] bg-black/20 px-8 py-4 text-[15px] font-medium text-white/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/[0.1] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black active:translate-y-0 active:scale-[0.98]"
               >
                 开始合作
               </a>

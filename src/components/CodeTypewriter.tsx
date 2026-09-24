@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const FRONT_SNIPPET = `// 与 SuperUnknown 一同探索未知
 const studio = {
   name: "SuperUnknown",
-  mission: "用技术驱动业务创新",
+  mission: "为没有现成蓝图的思想赋予形态",
   services: ["Web", "AI", "IoT"],
   industries: ["教育", "工业", "医疗"]
 };
