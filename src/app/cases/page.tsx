@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import CasesPage from "@/components/CasesPage";
 
 export const metadata: Metadata = {
@@ -10,13 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function Cases() {
-  return (
-    <>
-      <Navbar />
-      <main>
-        <CasesPage />
-      </main>
-      <Footer />
-    </>
-  );
+  return <CasesPage />;
 }
