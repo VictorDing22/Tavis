@@ -1,0 +1,274 @@
+.navbar {
+  --nav-ink: #0a0a0a;
+  --nav-bg: #fff;
+  position: fixed;
+  z-index: 80;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 96px;
+  transform: translateY(0);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.45s;
+}
+
+.hidden { transform: translateY(-101%); }
+.visible { transform: translateY(0); }
+
+.fill {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  transition: background 0.5s, backdrop-filter 0.5s;
+}
+
+.fixed .fill,
+.open .fill {
+  background: rgba(255, 255, 255, 0.94);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.strip { position: relative; z-index: 2; height: 100%; }
+.inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  width: min(1200px, calc(100% - 48px));
+  height: 100%;
+  margin-inline: auto;
+}
+
+.logo {
+  width: max-content;
+  color: inherit;
+  font-size: 22px;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  text-decoration: none;
+}
+
+.logoWave {
+  display: inline-flex;
+  overflow: hidden;
+  padding-block: 0.16em;
+  margin-block: -0.16em;
+}
+
+.logoLetter {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  animation: logoEnter 850ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--letter-index) * 28ms);
+}
+
+:global([data-team-ready="false"]) .logoLetter {
+  animation-play-state: paused;
+}
+
+.desktopMenu { display: flex; align-items: center; gap: 52px; }
+.links { display: flex; align-items: center; gap: 46px; }
+
+.navLink {
+  --enter-index: 0;
+  position: relative;
+  padding: 12px 0;
+  color: inherit;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.1;
+  text-decoration: none;
+  opacity: 0;
+  animation: navEnter 0.8s calc(var(--enter-index) * 0.1s) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navLink[aria-current="page"]::after { transform: scaleX(1); }
+.wordClip { display: block; overflow: hidden; }
+.word {
+  display: block;
+  position: relative;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.word::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  transform: scale(0.92);
+  transition: transform 0.4s;
+}
+
+.contact {
+  --enter-index: 3;
+  --ripple-x: 50%;
+  --ripple-y: 50%;
+  position: relative;
+  isolation: isolate;
+  min-width: 126px;
+  overflow: hidden;
+  border-radius: 999px;
+  padding: 17px 30px;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  opacity: 0;
+  transition: color 0.45s;
+  animation: navEnter 0.8s calc(var(--enter-index) * 0.1s) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.contactBorder {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  border-radius: inherit;
+  background: #050505;
+}
+
+.ripple {
+  position: absolute;
+  z-index: -1;
+  top: var(--ripple-y);
+  left: var(--ripple-x);
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.toggle {
+  display: none;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.toggle span {
+  position: absolute;
+  left: 11px;
+  width: 22px;
+  height: 1.5px;
+  background: currentColor;
+  transition: top 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.toggle span:first-child { top: 18px; }
+.toggle span:last-child { top: 26px; }
+.open .toggle span:first-child { top: 22px; transform: rotate(45deg); }
+.open .toggle span:last-child { top: 22px; transform: rotate(-45deg); }
+
+.darkText { color: var(--nav-ink); }
+.lightText { color: #fff; }
+.mobilePanel { display: none; }
+
+.navbar a:focus-visible,
+.toggle:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .navLink:hover .word,
+  .contact:hover .word { transform: translateY(-100%); }
+  .navLink:hover .word::after,
+  .contact:hover .word::after { transform: scale(1); }
+  .contact:hover .ripple { transform: translate(-50%, -50%) scale(1); }
+  .contact:hover { color: #050505; }
+}
+
+@media (max-width: 767px) {
+  .navbar { height: 72px; }
+  .inner { width: calc(100% - 32px); }
+  .logo { font-size: 20px; }
+  .desktopMenu { display: none; }
+  .toggle { display: block; }
+  .mobilePanel {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    padding: 112px 24px 40px;
+    background: #fff;
+    color: #0a0a0a;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-16px);
+    transition: visibility 0s 0.6s, opacity 0.45s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .open .mobilePanel {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+  .mobileLink {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #e5e5e5;
+    color: #0a0a0a;
+    font-size: clamp(34px, 11vw, 52px);
+    font-weight: 500;
+    line-height: 1.18;
+    letter-spacing: -0.055em;
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.35s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .mobileLink small { color: #a3a3a3; font-size: 12px; letter-spacing: 0; }
+  .open .mobileLink {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(0.08s + var(--mobile-index) * 0.06s);
+  }
+}
+
+@keyframes logoEnter {
+  from { opacity: 0; transform: translateY(115%) rotate(9deg) scaleY(1.15); }
+  to { opacity: 1; transform: translateY(0) rotate(0) scaleY(1); }
+}
+
+.navbar[data-stable-entry="true"] .navLink,
+.navbar[data-stable-entry="true"] .contact {
+  animation: none;
+  opacity: 1;
+}
+
+@keyframes navEnter {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar, .fill, .logo span, .navLink, .contact, .word, .word::after,
+  .ripple, .toggle span, .mobilePanel, .mobileLink {
+    animation: none !important;
+    transition: none !important;
+  }
+  .navLink, .contact { opacity: 1; }
+}

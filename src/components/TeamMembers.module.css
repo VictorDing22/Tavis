@@ -1,0 +1,14 @@
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 28px; }
+.card { display: block; min-width: 0; width: 100%; max-width: 280px; color: #0a0a0a; text-decoration: none; scroll-margin-top: 112px; }
+.portrait { position: relative; aspect-ratio: 5 / 6; overflow: hidden; border-radius: 10px; background: #f3f3f1; }
+.image { object-fit: cover; object-position: center; transition: transform 500ms cubic-bezier(.2,.65,.3,1); }
+.initial { display: grid; place-items: center; height: 100%; font-size: 64px; color: #737373; }
+.arrow { position: absolute; bottom: 18px; right: 18px; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: white; opacity: 0; transform: translateY(8px); transition: opacity 300ms, transform 300ms; }
+.name { margin-top: 20px; font-size: 26px; font-weight: 500; line-height: 1.3; letter-spacing: -.025em; }
+.role { margin-top: 7px; color: #737373; font-size: 16px; line-height: 1.5; }
+.card:focus-visible { outline: 2px solid #6366f1; outline-offset: 7px; border-radius: 10px; }
+.card:focus-visible .arrow { opacity: 1; transform: none; }
+@media (hover: hover) { .card:hover .image { transform: scale(1.04); } .card:hover .arrow { opacity: 1; transform: none; } }
+@media (max-width: 1023px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; } }
+@media (max-width: 639px) { .grid { grid-template-columns: minmax(0, 1fr); gap: 36px; } .name { font-size: 24px; } .arrow { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .image, .arrow { transition: none; } .card:hover .image { transform: none; } }

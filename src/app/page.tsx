@@ -6,10 +6,12 @@ import Industries from "@/components/Industries";
 import CTA from "@/components/CTA";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ContactAnchor from "@/components/ContactAnchor";
 
 export default function Home() {
   return (
     <>
+      <ContactAnchor />
       <Navbar />
       <main>
         <Hero />
