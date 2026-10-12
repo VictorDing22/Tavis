@@ -3,7 +3,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
@@ -12,25 +11,69 @@ import styles from "./CasesPage.module.css";
 
 const FILTERS = [
   { id: "all", label: "全部作品" },
+  { id: "ai", label: "AI 应用" },
   { id: "web", label: "Web 平台" },
   { id: "miniapp", label: "小程序" },
-  { id: "3d", label: "3D 可视化" },
 ] as const;
 type Filter = (typeof FILTERS)[number]["id"];
 
 // Presentation categories are independent of the shared detail-page content.
 const CATEGORIES: Record<string, Filter[]> = {
+  "maic-classroom": ["ai", "web"],
+  "procurement-agent": ["ai", "web"],
   "acoustic-emission": ["web"],
-  "meridian-learning": ["web", "3d"],
-  "questionnaire-system": ["web"],
   "smart-aging-platform": ["web", "miniapp"],
-  "air-quality-control": ["web"],
 };
 
 // Cuberto /projects: 70px reveal over 2s; filter fade-out .25s / fade-in .2s.
 const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
 const LIST_SCROLL_KEY = "cases:list-scroll";
 const RESTORE_MARKER_KEY = "cases:restore-position";
+
+function ProjectCursor() {
+  const cursor = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const media = window.matchMedia("(hover: hover) and (pointer: fine)");
+    if (!media.matches || !cursor.current) return;
+
+    const node = cursor.current;
+    const target = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    const current = { ...target };
+    let frame = 0;
+
+    const tick = () => {
+      current.x += (target.x - current.x) * 0.18;
+      current.y += (target.y - current.y) * 0.18;
+      node.style.transform = `translate3d(${current.x}px, ${current.y}px, 0)`;
+      frame = requestAnimationFrame(tick);
+    };
+    const onMove = (event: PointerEvent) => {
+      target.x = event.clientX;
+      target.y = event.clientY;
+      const card = (event.target as Element | null)?.closest?.("[data-cursor]");
+      node.dataset.active = card ? "true" : "false";
+    };
+    const onLeave = () => {
+      node.dataset.active = "false";
+    };
+
+    frame = requestAnimationFrame(tick);
+    window.addEventListener("pointermove", onMove, { passive: true });
+    document.documentElement.addEventListener("pointerleave", onLeave);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("pointermove", onMove);
+      document.documentElement.removeEventListener("pointerleave", onLeave);
+    };
+  }, []);
+
+  return (
+    <div ref={cursor} className={styles.cursor} data-active="false" aria-hidden="true">
+      <span className={styles.cursorBubble}>查看</span>
+    </div>
+  );
+}
 
 export default function CasesPage() {
   const [filter, setFilter] = useState<Filter>("all");
@@ -102,6 +145,7 @@ export default function CasesPage() {
 
   return (
     <div className={styles.page}>
+      {!reducedMotion && <ProjectCursor />}
       <section className={styles.projects} aria-labelledby="projects-title">
         <div className={styles.container}>
           <header className={styles.header}>
@@ -125,8 +169,8 @@ export default function CasesPage() {
                 onClick={() => setFilter(category.id)}
                 initial={{ opacity: 0, y: reducedMotion ? 0 : 30 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: reducedMotion ? 0 : 1, delay: reducedMotion ? 0 : 0.2 + index * 0.04, ease: EXPO_OUT }}>
-                <span className={styles.filterClip}>
-                  <span className={styles.filterText} data-label={category.label}>{category.label}</span>
+                <span className={styles.rollClip}>
+                  <span className={styles.rollText} data-label={category.label}>{category.label}</span>
                 </span>
               </motion.button>
             ))}
@@ -150,17 +194,19 @@ export default function CasesPage() {
                         href={`/cases/${caseStudy.slug}`}
                         scroll
                         className={styles.card}
+                        data-cursor
                         onClick={() => sessionStorage.setItem(LIST_SCROLL_KEY, String(window.scrollY))}
                         aria-label={`${caseStudy.title}，查看项目详情`}>
                         <div className={styles.preview}>
-                          <Image src={caseStudy.image} alt={caseStudy.title} fill priority={index < 2}
-                            sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1439px) 42vw, 500px"
+                          <Image src={caseStudy.cover} alt={caseStudy.title} fill priority={index < 2}
+                            sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1239px) 44vw, 500px"
                             className={styles.image} />
                         </div>
-                        <div className={styles.caption}>
-                          <h2>{caseStudy.title}<span aria-hidden="true"> — </span><span className={styles.summary}>{caseStudy.summary}</span></h2>
-                          <span className={styles.detail}>查看项目详情 <ArrowUpRight size={17} aria-hidden="true" /></span>
-                        </div>
+                        <h2 className={styles.caption}>
+                          <b>{caseStudy.title}</b>
+                          <span aria-hidden="true"> – </span>
+                          {caseStudy.summary}
+                        </h2>
                       </Link>
                     </motion.div>
                   </article>
@@ -171,15 +217,20 @@ export default function CasesPage() {
         </div>
       </section>
       <section className={styles.outro} aria-labelledby="projects-contact-title">
-        <div className={styles.container}>
-          <motion.div initial={{ opacity: 0, y: reducedMotion ? 0 : 50 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: reducedMotion ? 0 : 1.4, ease: EXPO_OUT }}>
-            <p className={styles.eyebrow}>下一个作品，与你共创</p>
-            <h2 id="projects-contact-title">有个想法，<br />想让它成为现实？</h2>
-            <p className={styles.outroText}>告诉我们你的目标，一起探索产品的更多可能。</p>
-            <Link href="/#contact" className={styles.contact}>聊聊你的项目 <ArrowUpRight size={24} aria-hidden="true" /></Link>
-          </motion.div>
+        <div className={styles.glow} aria-hidden="true">
+          <span /><span /><span /><span />
         </div>
+        <motion.div className={styles.outroInner}
+          initial={{ opacity: 0, y: reducedMotion ? 0 : 50 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }} transition={{ duration: reducedMotion ? 0 : 1.4, ease: EXPO_OUT }}>
+          <h2 id="projects-contact-title">有一个想做<br />或想重做的产品？</h2>
+          <p className={styles.outroText}>告诉我们产品现在的状态、你想达成的目标，以及正在遇到的阻碍。</p>
+          <Link href="/#contact" className={styles.contact}>
+            <span className={styles.rollClip}>
+              <span className={styles.rollText} data-label="聊聊你的项目">聊聊你的项目</span>
+            </span>
+          </Link>
+        </motion.div>
       </section>
     </div>
   );

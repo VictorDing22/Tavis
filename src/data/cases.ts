@@ -18,14 +18,106 @@ export interface CaseStudy {
   overview: string;
   tags: string[];
   gradient: string;
+  cover: string;
   image: string;
-  imageRatio: string;
   gallery?: CaseGalleryImage[];
   highlights: string[];
   capabilities: CaseCapability[];
 }
 
 export const CASES: CaseStudy[] = [
+  {
+    slug: "maic-classroom",
+    title: "多智能体互动课堂",
+    subtitle: "智慧教学 · AI 互动课堂",
+    summary: "为西安欧亚学院打造的 AI 课堂，一句话生成由 AI 老师与智能体同学共同参与的互动课程。",
+    overview:
+      "平台基于开源多智能体课堂引擎 OpenMAIC 深度定制，面向西安欧亚学院智慧教学场景。教师或学生输入想学的主题、上传学习材料，系统即可自动生成幻灯片、随堂测验、白板讲解与交互实验，由 AI 老师语音授课，智能体同学同步提问与讨论，让每一节课都能按需生成、即时互动。",
+    tags: ["Next.js", "React", "TypeScript", "LangGraph", "多智能体", "语音合成"],
+    gradient: "from-slate-800 via-slate-900 to-teal-900",
+    cover: "/cases/covers/maic.jpg",
+    image: "/cases/maic-classroom.jpg",
+    gallery: [
+      {
+        image: "/cases/maic-home.jpg",
+        alt: "多智能体互动课堂生成入口",
+        title: "一句话生成课堂",
+        description:
+          "输入课程主题或上传资料，选择模型与互动深度，即可生成一节包含讲解、练习与讨论的完整课堂。",
+      },
+      {
+        image: "/cases/maic-agents.jpg",
+        alt: "AI 老师在课堂中进行语音讲解",
+        title: "AI 老师与智能体同学",
+        description:
+          "AI 老师逐页讲解并配合字幕，智能体同学参与提问与讨论，学生可随时插话、暂停或回看。",
+      },
+    ],
+    highlights: ["一键生成完整课堂", "AI 老师语音授课", "智能体同学陪学", "测验与交互实验"],
+    capabilities: [
+      {
+        title: "课堂自动生成",
+        description: "根据主题或学习材料自动规划大纲，生成幻灯片、测验、白板与交互式实验等多种课堂场景。",
+      },
+      {
+        title: "多智能体授课",
+        description: "AI 老师负责讲解与板书，多个智能体同学模拟真实课堂中的提问、讨论与互动节奏。",
+      },
+      {
+        title: "语音与白板",
+        description: "讲解全程语音播报并同步字幕，复杂概念通过白板实时绘制图表与公式辅助理解。",
+      },
+      {
+        title: "学院品牌定制",
+        description: "界面、入口与课程内容按西安欧亚学院智慧教学平台进行品牌化定制与本地部署。",
+      },
+    ],
+  },
+  {
+    slug: "procurement-agent",
+    title: "西高院采购智能助手",
+    subtitle: "采购数字化 · AI Agent",
+    summary: "采购人员用自然语言查询供应商，助手自动比选、提示风险，每条结论都能回溯查询过程。",
+    overview:
+      "项目服务于西高院采购业务，以大模型智能体为核心，连接供应商信息库、采购制度知识库与外部征信数据。采购人员只需用一句话提出需求，助手便会自主检索在库企业、调取资质与历史合作记录，完成供应商比选与风险提示；每一步工具调用都会记录在案，结论可追溯、可核对，最终决策仍由人工确认。",
+    tags: ["大模型", "AI Agent", "RAG", "MCP", "Python", "模型网关"],
+    gradient: "from-stone-200 via-amber-50 to-stone-300",
+    cover: "/cases/covers/procure.jpg",
+    image: "/cases/procurement-agent.jpg",
+    gallery: [
+      {
+        image: "/cases/procurement-chat.jpg",
+        alt: "采购智能助手对话界面",
+        title: "自然语言采购问答",
+        description: "供应商名录、品类比选、单户风险核验等常用查询一键发起，回答按清单与结论清晰呈现。",
+      },
+      {
+        image: "/cases/procurement-trace.jpg",
+        alt: "采购智能助手查询记录面板",
+        title: "可追溯的查询记录",
+        description: "每次检索、调档与比对都按步骤记录工具调用和返回结果，方便采购人员逐条核对结论来源。",
+      },
+    ],
+    highlights: ["自然语言查供应商", "智能比选与风险提示", "制度知识库问答", "全过程可追溯"],
+    capabilities: [
+      {
+        title: "供应商智能检索",
+        description: "按品类、企业名称或编号检索在库供应商，自动调取注册资本、资质与历史合作评价。",
+      },
+      {
+        title: "比选与风险核验",
+        description: "结合历史合作表现与外部征信数据，对候选供应商进行比选，并对异常状态给出风险提示。",
+      },
+      {
+        title: "制度知识库",
+        description: "采购制度文档经切分、向量化与重排检索，回答时附带出处，确保依据可查。",
+      },
+      {
+        title: "模型网关与护栏",
+        description: "统一管理模型调用与工具权限，关键结论需人工确认，保障智能体在采购场景中的可控性。",
+      },
+    ],
+  },
   {
     slug: "acoustic-emission",
     title: "声发射工业检测平台",
@@ -35,8 +127,8 @@ export const CASES: CaseStudy[] = [
       "依托声发射无损感知技术，融合 AI 智能算法与物联网实时传输，全天候在线监测压力容器、管道、风电等工业核心设备，辅助捕捉早期微裂纹、疲劳损伤与腐蚀隐患。",
     tags: ["AI", "IoT", "Java", "Flink", "Kafka", "实时监测", "无损检测"],
     gradient: "from-slate-500 to-zinc-700",
+    cover: "/cases/covers/acoustic.jpg",
     image: "/cases/acoustic-emission.jpg",
-    imageRatio: "2643 / 1568",
     highlights: ["无损不停机检测", "AI 降噪识别算法", "24h 在线云监测", "多行业适配"],
     capabilities: [
       {
@@ -58,64 +150,6 @@ export const CASES: CaseStudy[] = [
     ],
   },
   {
-    slug: "meridian-learning",
-    title: "中医经络虚拟仿真教学平台",
-    subtitle: "高校中医专业 · 3D 交互教学",
-    summary: "以三维交互方式辅助学生识别经络、理解循行路径并完成在线学习与答题。",
-    overview:
-      "平台服务于高校中医专业课程教学，通过 3D 模型与浏览器交互，帮助学生识别十四条经络，完成交互答题、经络循行等学习操作，并已在智慧树虚拟仿真实验平台上线使用。",
-    tags: ["Three.js", "WebGL", "3D 可视化"],
-    gradient: "from-stone-100 to-amber-50",
-    image: "/cases/meridian.png",
-    imageRatio: "800 / 400",
-    highlights: ["3D 经络模型交互", "在线答题系统", "智慧树平台上线"],
-    capabilities: [
-      {
-        title: "3D 经络模型交互",
-        description: "通过浏览器端三维模型呈现经络位置与循行关系，让抽象知识更容易观察。",
-      },
-      {
-        title: "交互式学习与答题",
-        description: "将经络识别、循行操作与在线答题整合到同一教学流程中。",
-      },
-      {
-        title: "教学平台接入",
-        description: "项目已接入智慧树虚拟仿真实验平台，用于实际课程教学场景。",
-      },
-    ],
-  },
-  {
-    slug: "questionnaire-system",
-    title: "问卷调查测评系统",
-    subtitle: "教育创新研究院 · SaaS 平台",
-    summary: "覆盖问卷设计、发布、收集、报告与统计的一体化测评平台。",
-    overview:
-      "系统针对问卷的设计、发布、收集、报告和统计等环节进行统一管理，支持是非题、单选、多选、填空与矩阵题等多种题型，同时提供逻辑跳转、自定义皮肤与本地化部署能力。",
-    tags: ["React", "Node.js", "数据分析"],
-    gradient: "from-teal-50 to-emerald-50",
-    image: "/cases/questionnaire.png",
-    imageRatio: "1024 / 433",
-    highlights: ["多题型 + 逻辑跳转", "自定义皮肤与报告", "本地化部署支持"],
-    capabilities: [
-      {
-        title: "多题型问卷设计",
-        description: "支持是非、单选、多选、填空与矩阵题等多种结构，适配不同测评需求。",
-      },
-      {
-        title: "逻辑跳转与发布",
-        description: "通过答题逻辑控制后续内容，配合发布与收集流程完成问卷运行。",
-      },
-      {
-        title: "报告与数据统计",
-        description: "将收集结果统一汇总为报告与统计视图，支持问卷结果分析。",
-      },
-      {
-        title: "定制与本地化部署",
-        description: "支持页面皮肤与报告形式定制，并可根据使用场景进行本地化部署。",
-      },
-    ],
-  },
-  {
     slug: "smart-aging-platform",
     title: "智慧养老服务平台",
     subtitle: "智慧养老 · 小程序 + Web 管理后台",
@@ -132,8 +166,8 @@ export const CASES: CaseStudy[] = [
       "REST API",
     ],
     gradient: "from-indigo-100 via-slate-50 to-blue-100",
+    cover: "/cases/covers/aging.jpg",
     image: "/cases/smart-aging-admin.png",
-    imageRatio: "2816 / 1526",
     gallery: [
       {
         image: "/cases/smart-aging-home.png",
@@ -176,37 +210,6 @@ export const CASES: CaseStudy[] = [
         title: "多端后台管理",
         description:
           "通过 Web 管理后台统一处理用户、活动、广告和运营数据，为日常管理提供清晰工作台。",
-      },
-    ],
-  },
-  {
-    slug: "air-quality-control",
-    title: "厂区空气污染精准溯源管控系统",
-    subtitle: "工业环保 · 智能监测平台",
-    summary: "融合环境监测、扩散建模和 AI 溯源分析，支持工业园区污染预警与处置。",
-    overview:
-      "系统面向钢铁等工业园区构建大气环境数字化管控平台，融合空地一体化监测、大气扩散建模与 AI 溯源分析，支持污染源识别、分级预警与工单闭环处置。",
-    tags: ["GIS 可视化", "扩散建模", "AI 溯源", "实时监测", "工单闭环"],
-    gradient: "from-sky-50 to-blue-50",
-    image: "/cases/air-quality.png",
-    imageRatio: "934 / 677",
-    highlights: ["全要素污染物可视化", "多维度精准溯源诊断", "分级预警多渠道推送", "工单派发与闭环追溯"],
-    capabilities: [
-      {
-        title: "全要素可视化",
-        description: "整合厂区环境监测信息，通过 GIS 等可视化方式展示污染物分布与变化。",
-      },
-      {
-        title: "多维溯源诊断",
-        description: "结合空地一体化监测、大气扩散建模与 AI 分析，辅助识别污染源。",
-      },
-      {
-        title: "分级预警推送",
-        description: "基于监测与诊断结果形成分级预警，通过多渠道将关键信息推送给相关人员。",
-      },
-      {
-        title: "工单闭环处置",
-        description: "将异常识别、工单派发、处置与追溯串联起来，支持管控流程闭环。",
       },
     ],
   },
