@@ -119,6 +119,51 @@ export const CASES: CaseStudy[] = [
     ],
   },
   {
+    slug: "campus-sports-saas",
+    title: "校味体育 SaaS 平台",
+    subtitle: "高校体育 · 多租户 SaaS",
+    summary: "面向高校的一站式体育 SaaS，覆盖体测、课外锻炼、体育教学、赛事与场馆预约。",
+    overview:
+      "平台以多租户 SaaS 架构服务多所高校，每所学校拥有独立的品牌、组织架构与业务配置，并支持对接学校统一身份认证。系统覆盖高校体育工作的完整链路：体测预约、仪器上传成绩与统计上报，AI 跑步与打卡锻炼的过程记录与合格判定，体育课程、考勤与理论考试，校园赛事的分组、日程与计分，以及场馆的在线预约、支付与核销，并通过数据大屏让学校实时掌握学生的体质与运动情况。",
+    tags: ["Spring Boot", "Vue 3", "Element Plus", "MySQL", "Redis", "ECharts", "多租户 SaaS"],
+    gradient: "from-[#e9572f] via-[#d9472a] to-[#b8361f]",
+    cover: "/cases/covers/sport.jpg",
+    image: "/cases/sport-platform.jpg",
+    gallery: [
+      {
+        image: "/cases/sport-arrange.jpg",
+        alt: "体测预约安排管理界面",
+        title: "体测组织与预约",
+        description: "按学期创建多批次体测安排，支持学生个人、班级与指定院系等预约方式，并实时跟踪测试进度。",
+      },
+      {
+        image: "/cases/sport-running.jpg",
+        alt: "AI 跑步记录管理界面",
+        title: "课外锻炼过程记录",
+        description: "完整记录每次跑步的时长、距离与配速，按合格规则自动判定，并给出不合格原因供学生申诉核查。",
+      },
+    ],
+    highlights: ["多校多租户独立运营", "体测全流程管理", "AI 跑步与打卡锻炼", "场馆在线预约"],
+    capabilities: [
+      {
+        title: "体质测试管理",
+        description: "从体测预约、教师排班到仪器对接上传成绩，按评分规则自动计算等级，并完成统计分析与数据上报。",
+      },
+      {
+        title: "课外锻炼",
+        description: "覆盖 AI 跑步、APP 跑步、定点打卡与 AI 运动项目，配置合格规则与有效配速，支持免于锻炼申请与成绩申诉。",
+      },
+      {
+        title: "教学与赛事",
+        description: "管理体育课程、排课、考勤与理论考试题库，组织校园赛事的分组、日程、评分公式与团体总分。",
+      },
+      {
+        title: "场馆与数据大屏",
+        description: "场地在线预约、计费支付与到场核销，配合体测与运动数据大屏，让学校实时掌握整体运动情况。",
+      },
+    ],
+  },
+  {
     slug: "acoustic-emission",
     title: "声发射工业检测平台",
     subtitle: "工业安全 · IoT + AI",

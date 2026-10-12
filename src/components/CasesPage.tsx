@@ -21,6 +21,7 @@ type Filter = (typeof FILTERS)[number]["id"];
 const CATEGORIES: Record<string, Filter[]> = {
   "maic-classroom": ["ai", "web"],
   "procurement-agent": ["ai", "web"],
+  "campus-sports-saas": ["web"],
   "acoustic-emission": ["web"],
   "smart-aging-platform": ["web", "miniapp"],
 };
