@@ -13,7 +13,17 @@ const STATS: { value: number; suffix: string; label: string }[] = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 md:py-32 bg-white text-center">
+    <section
+      id="about"
+      className="py-24 md:py-32 bg-white text-center"
+      // Matches eurasia.edu/css/index.css (.homea1), using a local asset.
+      style={{
+        backgroundImage: "url('/about/eurasia-campus-background.jpg')",
+        backgroundPosition: "center center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
       <div className="max-w-content mx-auto px-6">
         <AnimateOnScroll>
           <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-semibold tracking-tight leading-tight text-primary">

@@ -36,7 +36,7 @@ export async function POST(request: Request) {
     const toEmail = process.env.CONTACT_EMAIL || "dse0403@163.com";
 
     await resend.emails.send({
-      from: "奇点工坊 <onboarding@resend.dev>",
+      from: "SuperUnknown <onboarding@resend.dev>",
       to: [toEmail],
       subject: `[网站咨询] ${name} — ${projectType}`,
       replyTo: email,
