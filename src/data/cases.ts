@@ -164,33 +164,92 @@ export const CASES: CaseStudy[] = [
     ],
   },
   {
-    slug: "acoustic-emission",
-    title: "声发射工业检测平台",
-    subtitle: "工业安全 · IoT + AI",
-    summary: "融合声发射无损检测、AI 算法与物联网传输，对工业核心设备进行持续在线监测。",
+    slug: "found-my-job",
+    title: "FoundMyJob",
+    subtitle: "求职助手 · AI 简历",
+    summary: "本地求职助手，同步企业公开岗位，按个人经历生成可审核的专属简历，并记下每一次投递。",
     overview:
-      "依托声发射无损感知技术，融合 AI 智能算法与物联网实时传输，全天候在线监测压力容器、管道、风电等工业核心设备，辅助捕捉早期微裂纹、疲劳损伤与腐蚀隐患。",
-    tags: ["AI", "IoT", "Java", "Flink", "Kafka", "实时监测", "无损检测"],
-    gradient: "from-slate-500 to-zinc-700",
-    cover: "/cases/covers/acoustic.jpg",
-    image: "/cases/acoustic-emission.jpg",
-    highlights: ["无损不停机检测", "AI 降噪识别算法", "24h 在线云监测", "多行业适配"],
+      "FoundMyJob 跑在求职者自己的电脑上。教育经历、技能和项目都写进个人档案，连同岗位与简历一起存在本机数据库里，不需要把经历交给一个常驻的云账号。它从企业公开招聘板同步真实岗位，也可以粘贴职位描述手动导入；选定一个机会后，用本机的 Cursor 或自己的模型 Key 生成中文或英文简历，逐项核对再导出。投递仍由本人到岗位原文页面完成，系统只负责把进度记下来。",
+    tags: ["Node.js", "SQLite", "大模型", "Greenhouse"],
+    gradient: "from-[#ebe6f8] via-[#f7f4fc] to-[#ddd6f3]",
+    cover: "/cases/covers/foundmyjob.jpg",
+    image: "/cases/foundmyjob-dashboard.jpg",
+    gallery: [
+      {
+        image: "/cases/foundmyjob-jobs.jpg",
+        alt: "FoundMyJob 岗位发现列表",
+        title: "同步真实岗位",
+        description: "从企业公开招聘板拉取在招职位，按地区、招聘类型和办公方式筛选，并对照个人档案给出匹配参考。",
+      },
+      {
+        image: "/cases/foundmyjob-dashboard.jpg",
+        alt: "FoundMyJob 工作台与求职路径",
+        title: "从档案到投递",
+        description: "工作台把建档、找岗位、准备简历和记录投递收成一条路径，每一步都回到同一个人的真实经历。",
+      },
+    ],
+    highlights: ["真实岗位同步", "档案留在本机", "简历生成后可审核", "投递进度自己记"],
     capabilities: [
       {
-        title: "无损不停机检测",
-        description: "利用声发射无损感知技术，在不影响核心设备运行的前提下持续采集状态信号。",
+        title: "真实岗位库",
+        description: "接入企业公开的 Greenhouse 与 Lever 招聘板，也支持粘贴职位描述导入。招聘状态以原文为准，匹配度只作参考。",
       },
       {
-        title: "AI 降噪识别",
-        description: "结合智能算法对采集信号进行降噪与识别，辅助发现微裂纹、疲劳损伤与腐蚀隐患。",
+        title: "个人档案",
+        description: "教育、技能、实习和项目经历保存在本机 SQLite。档案越完整，岗位筛选和简历取材越贴近本人。",
       },
       {
-        title: "24h 在线云监测",
-        description: "通过物联网链路完成实时传输与平台化展示，形成连续的设备状态观测能力。",
+        title: "专属简历",
+        description: "针对单个岗位生成中文或英文简历，可编辑、逐项审核，再导出 Markdown 或打印为 PDF。内容一改，审核状态就会失效。",
       },
       {
-        title: "多行业场景适配",
-        description: "面向压力容器、管道与风电等不同工业设备场景进行监测能力配置。",
+        title: "投递追踪",
+        description: "用准备中、已投递、面试中、已结束记录进度。标记已投递前，需要先完成该岗位简历的审核。",
+      },
+    ],
+  },
+  {
+    slug: "catcare-companion",
+    title: "CatCare 宠物陪伴",
+    subtitle: "智能看护 · 远程互动",
+    summary: "远程查看猫咪状态，发起温和互动，并把活动和看护观察整理成日常记录。",
+    overview:
+      "CatCare 把摄像头预览、行为识别和互动控制放进同一套产品。主人可以在看护台上确认猫咪是否在场、正在休息还是玩耍，查看当天的活动与互动记录，并通过远程逗玩面板控制方向、激光和急停。识别和界面是分开的：检测负责判断画面里发生了什么，界面只给出克制的看护提示，不把观察说成医疗结论。当前版本先用本地预览和设备模拟把看护、互动和隐私边界跑通，再接入真实硬件。",
+    tags: ["React", "Python", "YOLOv8", "FastAPI"],
+    gradient: "from-[#f4efe6] via-[#e7f0ea] to-[#d5e3ea]",
+    cover: "/cases/covers/catcare.jpg",
+    image: "/cases/catcare-home.jpg",
+    gallery: [
+      {
+        image: "/cases/catcare-health.jpg",
+        alt: "CatCare 健康观察界面",
+        title: "在场与行为观察",
+        description: "看护页汇总猫咪是否可见、当前行为和识别把握，并把健康提示限制在日常观察，不替代兽医判断。",
+      },
+      {
+        image: "/cases/catcare-activity.jpg",
+        alt: "CatCare 每日活动与互动记录",
+        title: "每日活动记录",
+        description: "按天整理活动时长、互动次数和安全停止记录，方便回看猫咪这一天是平稳度过，还是中途被打断。",
+      },
+    ],
+    highlights: ["在场与行为观察", "远程温和互动", "每日活动记录", "看护提示保持克制"],
+    capabilities: [
+      {
+        title: "看护台",
+        description: "在一个页面里看到设备是否在线、猫咪是否可见、当前是休息还是玩耍，以及最近一次状态更新。",
+      },
+      {
+        title: "远程互动",
+        description: "逗玩面板提供方向、激光和急停。画面预览留在本地，远程指令先经过模拟设备，确认安全边界后再接硬件。",
+      },
+      {
+        title: "活动与健康观察",
+        description: "记录每天的活动、互动场次和安全停止，并把进食、如厕等观察标成“还不够判断”，避免过度解读。",
+      },
+      {
+        title: "识别与产品分开",
+        description: "猫咪检测和行为分类独立训练，产品侧只接收整理后的状态。看护提示服务日常陪伴，不做成诊断结论。",
       },
     ],
   },
@@ -255,6 +314,37 @@ export const CASES: CaseStudy[] = [
         title: "多端后台管理",
         description:
           "通过 Web 管理后台统一处理用户、活动、广告和运营数据，为日常管理提供清晰工作台。",
+      },
+    ],
+  },
+  {
+    slug: "acoustic-emission",
+    title: "声发射工业检测平台",
+    subtitle: "工业安全 · IoT + AI",
+    summary: "融合声发射无损检测、AI 算法与物联网传输，对工业核心设备进行持续在线监测。",
+    overview:
+      "依托声发射无损感知技术，融合 AI 智能算法与物联网实时传输，全天候在线监测压力容器、管道、风电等工业核心设备，辅助捕捉早期微裂纹、疲劳损伤与腐蚀隐患。",
+    tags: ["AI", "IoT", "Java", "Flink", "Kafka", "实时监测", "无损检测"],
+    gradient: "from-slate-500 to-zinc-700",
+    cover: "/cases/covers/acoustic.jpg",
+    image: "/cases/acoustic-emission.jpg",
+    highlights: ["无损不停机检测", "AI 降噪识别算法", "24h 在线云监测", "多行业适配"],
+    capabilities: [
+      {
+        title: "无损不停机检测",
+        description: "利用声发射无损感知技术，在不影响核心设备运行的前提下持续采集状态信号。",
+      },
+      {
+        title: "AI 降噪识别",
+        description: "结合智能算法对采集信号进行降噪与识别，辅助发现微裂纹、疲劳损伤与腐蚀隐患。",
+      },
+      {
+        title: "24h 在线云监测",
+        description: "通过物联网链路完成实时传输与平台化展示，形成连续的设备状态观测能力。",
+      },
+      {
+        title: "多行业场景适配",
+        description: "面向压力容器、管道与风电等不同工业设备场景进行监测能力配置。",
       },
     ],
   },
