@@ -14,6 +14,11 @@
 .hidden { transform: translateY(-101%); }
 .visible { transform: translateY(0); }
 
+:global(html.team-position-restoring) .navbar {
+  transform: translateY(-101%);
+  transition: none;
+}
+
 .fill {
   position: absolute;
   inset: 0;
