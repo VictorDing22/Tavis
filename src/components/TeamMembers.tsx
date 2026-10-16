@@ -15,7 +15,16 @@ export default function TeamMembers() {
             <Link key={member.slug} href={`/team/${member.slug}`} scroll
               id={`member-${member.slug}`} className={styles.card}
               aria-label={`${member.name}，${member.role}，查看个人介绍`}
-              onClick={() => sessionStorage.setItem("team:list-scroll", String(window.scrollY))}>
+              onClick={event => {
+                if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+                sessionStorage.setItem("team:list-scroll", String(window.scrollY));
+                sessionStorage.setItem("team:last-member", member.slug);
+                sessionStorage.setItem(
+                  "team:last-member-offset",
+                  String(event.currentTarget.getBoundingClientRect().top),
+                );
+              }}>
               <div className={styles.portrait}>
                 {member.image ? <Image src={member.image} alt={member.name} fill
                   sizes="(max-width: 327px) calc(100vw - 48px), 280px"
