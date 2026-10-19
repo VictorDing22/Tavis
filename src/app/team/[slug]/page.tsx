@@ -42,7 +42,7 @@ export default function TeamMemberPage({ params }: Props) {
                 <h2 id="member-education" className="text-sm text-secondary mb-4">毕业院校</h2>
                 <ul className="space-y-5">{member.education.map(item => <li key={item.school}><p className="text-base font-medium">{item.school}</p><p className="mt-1 text-sm text-secondary">{item.degree}</p></li>)}</ul>
               </section> : null}
-              {member.experienceItems?.length || member.experience ? <section aria-labelledby="member-experience">
+              {member.experienceItems?.length || member.experience ? <section aria-labelledby="member-experience" className={!member.education?.length ? "sm:col-span-2 max-w-3xl" : undefined}>
                 <h2 id="member-experience" className="text-sm text-secondary mb-4">{member.experienceLabel ?? "工作经历"}</h2>
                 {member.experienceItems?.length ? <ol className="space-y-7">{member.experienceItems.map(item => <li key={`${item.period ?? ""}-${item.organization}`}>
                   {item.period ? <p className="text-sm text-secondary">{item.period}</p> : null}
