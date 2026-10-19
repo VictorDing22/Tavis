@@ -35,6 +35,8 @@ export default function Navbar({ tone = "dark" }: NavbarProps) {
   const darkText = lightPage || fixed || open;
 
   useEffect(() => {
+    let firstRestoreFrame = 0;
+    let secondRestoreFrame = 0;
     previousY.current = window.scrollY;
     const updateHash = () => {
       const nextHash = window.location.hash.slice(1);
@@ -71,9 +73,25 @@ export default function Navbar({ tone = "dark" }: NavbarProps) {
     };
     updateHash();
     onScroll();
+
+    if (
+      pathname === "/team" &&
+      document.documentElement.classList.contains("team-position-restoring")
+    ) {
+      firstRestoreFrame = requestAnimationFrame(() => {
+        onScroll();
+        secondRestoreFrame = requestAnimationFrame(() => {
+          onScroll();
+          document.documentElement.classList.remove("team-position-restoring");
+        });
+      });
+    }
+
     window.addEventListener("hashchange", updateHash);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
+      cancelAnimationFrame(firstRestoreFrame);
+      cancelAnimationFrame(secondRestoreFrame);
       window.removeEventListener("hashchange", updateHash);
       window.removeEventListener("scroll", onScroll);
     };
