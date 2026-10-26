@@ -35,8 +35,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${SITE_URL}/og-image.png`,
-        width: 1024,
-        height: 542,
+        width: 1200,
+        height: 630,
         alt: "SuperUnknown — 软件开发与技术服务",
       },
     ],
