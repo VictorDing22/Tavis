@@ -38,7 +38,7 @@ npm run dev                   # http://localhost:3000
 
 | 路径 | 内容 |
 |------|------|
-| `/` | 首页（Hero 轮播 → 关于 → 服务 → 行业 → CTA → 联系表单） |
+| `/` | 首页（Hero 作品展映 → 关于 → 服务 → 行业 → CTA → 联系表单） |
 | `/cases` | 案例列表（分类筛选：全部 / AI 应用 / Web 平台 / 小程序） |
 | `/cases/[slug]` | 案例详情（项目概览、关键界面、核心能力、下一个项目） |
 | `/team` | 团队成员 + 价值观 |
@@ -76,7 +76,7 @@ npm run dev                   # http://localhost:3000
 |------|---------|
 | `src/app/layout.tsx` | SEO 标题 / 描述 / OG 图片 |
 | `src/components/Navbar.tsx` | Logo / 品牌名 |
-| `src/components/Hero.tsx` | 轮播图片、切换速度 |
+| `src/components/Hero.tsx` | 首屏标题、副标题与按钮（作品展映自动读取 `CASES`） |
 | `src/components/About.tsx` | 主标题、副标题、统计数字 |
 | `src/components/Services.tsx` | 服务卡片内容 |
 | `src/components/Industries.tsx` | 覆盖行业列表 |
@@ -104,7 +104,6 @@ src/
     └── team.ts                  # 团队成员数据
 
 public/
-├── hero/                        # 首屏轮播图片
 ├── cases/                       # 案例截图
 ├── team/                        # 成员照片
 ├── about/                       # 服务区块背景图

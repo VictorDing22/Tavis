@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <ContactAnchor />
-      <Navbar />
+      <Navbar tone="light" />
       <main>
         <Hero />
         <About />

@@ -1,0 +1,25 @@
+/* Follower bubble that replaces the pointer over elements marked with data-cursor. */
+.cursor {
+  position: fixed;
+  z-index: 90;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+.cursorBubble {
+  position: absolute;
+  top: -48px;
+  left: -48px;
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  transform: scale(0);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cursor[data-active="true"] .cursorBubble { transform: scale(1); }
