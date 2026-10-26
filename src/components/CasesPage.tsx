@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import { CASES } from "@/data/cases";
+import CaseCover from "./CaseCover";
 import styles from "./CasesPage.module.css";
 
 const FILTERS = [
@@ -202,10 +202,8 @@ export default function CasesPage() {
                         data-cursor
                         onClick={() => sessionStorage.setItem(LIST_SCROLL_KEY, String(window.scrollY))}
                         aria-label={`${caseStudy.title}，查看项目详情`}>
-                        <div className={styles.preview}>
-                          <Image src={caseStudy.cover} alt={caseStudy.title} fill priority={index < 2}
-                            sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1239px) 44vw, 500px"
-                            className={styles.image} />
+                        <div className={`${styles.preview} bg-gradient-to-br ${caseStudy.gradient}`}>
+                          <CaseCover caseStudy={caseStudy} priority={index < 2} className={styles.image} />
                         </div>
                         <h2 className={styles.caption}>
                           <b>{caseStudy.title}</b>

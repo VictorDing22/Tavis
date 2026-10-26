@@ -15,14 +15,8 @@ export default function CaseDetailPage({ caseStudy }: CaseDetailPageProps) {
     caseStudy.subtitle.split(" · ");
   const currentIndex = CASES.findIndex(({ slug }) => slug === caseStudy.slug);
   const nextCase = CASES[(currentIndex + 1) % CASES.length];
-  const detailCards =
-    caseStudy.gallery ??
-    caseStudy.capabilities.slice(0, 2).map((capability) => ({
-      image: caseStudy.image,
-      alt: `${capability.title}界面细节`,
-      title: capability.title,
-      description: capability.description,
-    }));
+  const gallery = caseStudy.gallery ?? [];
+  const isSingleDetail = gallery.length === 1;
 
   return (
     <>
@@ -76,26 +70,48 @@ export default function CaseDetailPage({ caseStudy }: CaseDetailPageProps) {
             <div
               className={`rounded-[28px] bg-gradient-to-br p-4 sm:p-8 md:p-12 lg:p-16 ${caseStudy.gradient}`}
             >
-              <div className="mx-auto max-w-[1160px] overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_28px_80px_rgba(17,24,39,0.16)] md:rounded-2xl">
-                <div className="flex h-10 items-center gap-2 border-b border-black/[0.08] bg-white px-4 md:h-12 md:px-5">
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#ff605c]" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd44]" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#00ca4e]" />
-                  <span className="ml-3 truncate text-[11px] text-neutral-400 md:text-xs">
-                    {caseStudy.title}
-                  </span>
+              {Array.isArray(caseStudy.image) ? (
+                <div className="flex items-start justify-center gap-5 py-4 sm:gap-10 md:pb-14 md:pt-2">
+                  {caseStudy.image.map((src, index) => (
+                    <div
+                      key={src}
+                      className={`relative aspect-[585/1270] w-[40%] max-w-[300px] overflow-hidden rounded-[7.5%/3.5%] shadow-[0_28px_80px_rgba(17,24,39,0.28)] ${
+                        index === 1 ? "mt-10 md:mt-14" : ""
+                      }`}
+                    >
+                      <Image
+                        src={src}
+                        alt={`${caseStudy.title}界面 ${index + 1}`}
+                        fill
+                        priority
+                        sizes="(min-width: 768px) 300px, 40vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  ))}
                 </div>
-                <div className="relative aspect-[16/9] w-full bg-neutral-100">
-                  <Image
-                    src={caseStudy.image}
-                    alt={`${caseStudy.title}项目界面`}
-                    fill
-                    priority
-                    sizes="(min-width: 1280px) 1160px, 92vw"
-                    className="object-cover object-top"
-                  />
+              ) : (
+                <div className="mx-auto max-w-[1160px] overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_28px_80px_rgba(17,24,39,0.16)] md:rounded-2xl">
+                  <div className="flex h-10 items-center gap-2 border-b border-black/[0.08] bg-white px-4 md:h-12 md:px-5">
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#ff605c]" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd44]" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#00ca4e]" />
+                    <span className="ml-3 truncate text-[11px] text-neutral-400 md:text-xs">
+                      {caseStudy.title}
+                    </span>
+                  </div>
+                  <div className="relative aspect-[16/9] w-full bg-neutral-100">
+                    <Image
+                      src={caseStudy.image}
+                      alt={`${caseStudy.title}项目界面`}
+                      fill
+                      priority
+                      sizes="(min-width: 1280px) 1160px, 92vw"
+                      className="object-cover object-top"
+                    />
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </AnimateOnScroll>
         </div>
@@ -151,66 +167,77 @@ export default function CaseDetailPage({ caseStudy }: CaseDetailPageProps) {
           </AnimateOnScroll>
         </section>
 
-        <section className="bg-[#f4f4f1] py-20 md:py-28">
-          <div className="mx-auto max-w-content px-6">
-            <AnimateOnScroll>
-              <div className="mb-12 flex flex-col justify-between gap-5 sm:flex-row sm:items-end md:mb-16">
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">
-                    Product details
+        {gallery.length > 0 && (
+          <section className="bg-[#f4f4f1] py-20 md:py-28">
+            <div className="mx-auto max-w-content px-6">
+              <AnimateOnScroll>
+                <div className="mb-12 flex flex-col justify-between gap-5 sm:flex-row sm:items-end md:mb-16">
+                  <div>
+                    <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">
+                      Product details
+                    </p>
+                    <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] text-primary sm:text-4xl">
+                      关键界面细节
+                    </h2>
+                  </div>
+                  <p className="max-w-[420px] text-sm leading-relaxed text-secondary">
+                    从整体运行状态到关键业务信息，让复杂数据保持清晰、可读与可操作。
                   </p>
-                  <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] text-primary sm:text-4xl">
-                    关键界面细节
-                  </h2>
                 </div>
-                <p className="max-w-[420px] text-sm leading-relaxed text-secondary">
-                  从整体运行状态到关键业务信息，让复杂数据保持清晰、可读与可操作。
-                </p>
-              </div>
-            </AnimateOnScroll>
+              </AnimateOnScroll>
 
-            <div className="grid gap-6 md:grid-cols-2">
-              {detailCards.map((detail, index) => (
-                <AnimateOnScroll
-                  key={detail.title}
-                  delay={index * 0.08}
-                  variant="scale-up"
-                >
-                  <figure>
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-black/[0.08] bg-white">
-                      <Image
-                        src={detail.image}
-                        alt={detail.alt}
-                        fill
-                        sizes="(min-width: 768px) 50vw, 100vw"
-                        className={
-                          caseStudy.gallery
-                            ? "object-contain p-4 sm:p-6"
-                            : `scale-[1.18] object-cover ${
-                                index === 0
-                                  ? "origin-top-left object-left-top"
-                                  : "origin-bottom-right object-right-bottom"
-                              }`
-                        }
-                      />
-                    </div>
-                    <figcaption className="mt-5">
-                      <p className="font-mono text-[11px] text-neutral-400">
-                        0{index + 1}
-                      </p>
-                      <h3 className="mt-2 text-lg font-semibold text-primary">
-                        {detail.title}
-                      </h3>
-                      <p className="mt-2 max-w-[520px] text-sm leading-relaxed text-secondary">
-                        {detail.description}
-                      </p>
-                    </figcaption>
-                  </figure>
-                </AnimateOnScroll>
-              ))}
+              <div className={isSingleDetail ? "" : "grid gap-6 md:grid-cols-2"}>
+                {gallery.map((detail, index) => (
+                  <AnimateOnScroll
+                    key={detail.title}
+                    delay={index * 0.08}
+                    variant="scale-up"
+                  >
+                    <figure
+                      className={
+                        isSingleDetail
+                          ? "grid gap-6 md:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)] md:items-end md:gap-12"
+                          : undefined
+                      }
+                    >
+                      {isSingleDetail ? (
+                        <Image
+                          src={detail.image}
+                          alt={detail.alt}
+                          width={0}
+                          height={0}
+                          sizes="(min-width: 768px) 760px, 100vw"
+                          className="h-auto w-full rounded-2xl border border-black/[0.08] bg-white"
+                        />
+                      ) : (
+                        <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-black/[0.08] bg-white">
+                          <Image
+                            src={detail.image}
+                            alt={detail.alt}
+                            fill
+                            sizes="(min-width: 768px) 50vw, 100vw"
+                            className="object-cover object-left-top"
+                          />
+                        </div>
+                      )}
+                      <figcaption className={isSingleDetail ? "md:pb-2" : "mt-5"}>
+                        <p className="font-mono text-[11px] text-neutral-400">
+                          0{index + 1}
+                        </p>
+                        <h3 className="mt-2 text-lg font-semibold text-primary">
+                          {detail.title}
+                        </h3>
+                        <p className="mt-2 max-w-[520px] text-sm leading-relaxed text-secondary">
+                          {detail.description}
+                        </p>
+                      </figcaption>
+                    </figure>
+                  </AnimateOnScroll>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         <section className="mx-auto max-w-content px-6 py-24 md:py-32">
           <AnimateOnScroll>

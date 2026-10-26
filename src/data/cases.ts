@@ -18,8 +18,8 @@ export interface CaseStudy {
   overview: string;
   tags: string[];
   gradient: string;
-  cover: string;
-  image: string;
+  /** A browser screenshot, or a pair of phone screenshots shown side by side. */
+  image: string | [string, string];
   gallery?: CaseGalleryImage[];
   highlights: string[];
   capabilities: CaseCapability[];
@@ -35,7 +35,6 @@ export const CASES: CaseStudy[] = [
       "平台基于开源多智能体课堂引擎 OpenMAIC 深度定制，面向西安欧亚学院智慧教学场景。教师或学生输入想学的主题、上传学习材料，系统即可自动生成幻灯片、随堂测验、白板讲解与交互实验，由 AI 老师语音授课，智能体同学同步提问与讨论，让每一节课都能按需生成、即时互动。",
     tags: ["Next.js", "React", "TypeScript", "LangGraph", "多智能体", "语音合成"],
     gradient: "from-slate-800 via-slate-900 to-teal-900",
-    cover: "/cases/covers/maic.jpg",
     image: "/cases/maic-classroom.jpg",
     gallery: [
       {
@@ -44,13 +43,6 @@ export const CASES: CaseStudy[] = [
         title: "一句话生成课堂",
         description:
           "输入课程主题或上传资料，选择模型与互动深度，即可生成一节包含讲解、练习与讨论的完整课堂。",
-      },
-      {
-        image: "/cases/maic-agents.jpg",
-        alt: "AI 老师在课堂中进行语音讲解",
-        title: "AI 老师与智能体同学",
-        description:
-          "AI 老师逐页讲解并配合字幕，智能体同学参与提问与讨论，学生可随时插话、暂停或回看。",
       },
     ],
     highlights: ["一键生成完整课堂", "AI 老师语音授课", "智能体同学陪学", "测验与交互实验"],
@@ -82,8 +74,7 @@ export const CASES: CaseStudy[] = [
     overview:
       "SuperUnknown 工作室用 SuperUnknownMAIC 把课程做成 AI 互动课堂，导出的却是一个约 7.8MB 的单文件 HTML，原本只能作为文件传来传去。课程广场要解决的，是让每门课都有一个随时能打开的入口：教师在课程管理上传课程包，学生在广场搜索选课、进入详情页全屏上课，下次回来直接从上一幕续播。技术上坚持「不重写播放器」，平台只做外壳——Next.js 静态导出负责广场与详情，iframe 承载单文件课堂，一套代码通过 basePath 同时产出公开站和校园 /plaza/ 子路径。",
     tags: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "静态导出", "JWT 单点登录"],
-    gradient: "from-[#e8f3f8] via-[#f4f9fc] to-[#d7e6ef]",
-    cover: "/cases/covers/courses.jpg",
+    gradient: "from-[#d5ecea] via-[#eaf5f5] to-[#c8dde8]",
     image: "/cases/courses-home.jpg",
     gallery: [
       {
@@ -92,13 +83,6 @@ export const CASES: CaseStudy[] = [
         title: "课程详情与统计",
         description:
           "课程简介、标签与场景、互动关卡、测验、时长四项统计集中在同一页，开始学习后直接进入全屏课堂。",
-      },
-      {
-        image: "/cases/courses-player.jpg",
-        alt: "单文件互动课堂播放界面",
-        title: "离线也能上的课",
-        description:
-          "单文件课堂内嵌幻灯片、互动关卡与测验，保留 AI 老师旁白字幕、场景侧栏与全屏，断网时依然能完整播放。",
       },
     ],
     highlights: [
@@ -139,22 +123,7 @@ export const CASES: CaseStudy[] = [
       "项目服务于西高院采购业务，以大模型智能体为核心，连接供应商信息库、采购制度知识库与外部征信数据。采购人员只需用一句话提出需求，助手便会自主检索在库企业、调取资质与历史合作记录，完成供应商比选与风险提示；每一步工具调用都会记录在案，结论可追溯、可核对，最终决策仍由人工确认。",
     tags: ["大模型", "AI Agent", "RAG", "MCP", "Python", "模型网关"],
     gradient: "from-stone-200 via-amber-50 to-stone-300",
-    cover: "/cases/covers/procure.jpg",
     image: "/cases/procurement-agent.jpg",
-    gallery: [
-      {
-        image: "/cases/procurement-chat.jpg",
-        alt: "采购智能助手对话界面",
-        title: "自然语言采购问答",
-        description: "供应商名录、品类比选、单户风险核验等常用查询一键发起，回答按清单与结论清晰呈现。",
-      },
-      {
-        image: "/cases/procurement-trace.jpg",
-        alt: "采购智能助手查询记录面板",
-        title: "可追溯的查询记录",
-        description: "每次检索、调档与比对都按步骤记录工具调用和返回结果，方便采购人员逐条核对结论来源。",
-      },
-    ],
     highlights: ["自然语言查供应商", "智能比选与风险提示", "制度知识库问答", "全过程可追溯"],
     capabilities: [
       {
@@ -184,7 +153,6 @@ export const CASES: CaseStudy[] = [
       "平台以多租户 SaaS 架构服务多所高校，每所学校拥有独立的品牌、组织架构与业务配置，并支持对接学校统一身份认证。系统覆盖高校体育工作的完整链路：体测预约、仪器上传成绩与统计上报，AI 跑步与打卡锻炼的过程记录与合格判定，体育课程、考勤与理论考试，校园赛事的分组、日程与计分，以及场馆的在线预约、支付与核销，并通过数据大屏让学校实时掌握学生的体质与运动情况。",
     tags: ["Spring Boot", "Vue 3", "Element Plus", "MySQL", "Redis", "ECharts", "多租户 SaaS"],
     gradient: "from-[#e9572f] via-[#d9472a] to-[#b8361f]",
-    cover: "/cases/covers/sport.jpg",
     image: "/cases/sport-platform.jpg",
     gallery: [
       {
@@ -228,8 +196,7 @@ export const CASES: CaseStudy[] = [
     overview:
       "FoundMyJob 跑在求职者自己的电脑上。教育经历、技能和项目都写进个人档案，连同岗位与简历一起存在本机数据库里，不需要把经历交给一个常驻的云账号。它从企业公开招聘板同步真实岗位，也可以粘贴职位描述手动导入；选定一个机会后，用本机的 Cursor 或自己的模型 Key 生成中文或英文简历，逐项核对再导出。投递仍由本人到岗位原文页面完成，系统只负责把进度记下来。",
     tags: ["Node.js", "SQLite", "大模型", "Greenhouse"],
-    gradient: "from-[#ebe6f8] via-[#f7f4fc] to-[#ddd6f3]",
-    cover: "/cases/covers/foundmyjob.jpg",
+    gradient: "from-[#e2dbf7] via-[#f1edfb] to-[#d2c8f0]",
     image: "/cases/foundmyjob-dashboard.jpg",
     gallery: [
       {
@@ -237,12 +204,6 @@ export const CASES: CaseStudy[] = [
         alt: "FoundMyJob 岗位发现列表",
         title: "同步真实岗位",
         description: "从企业公开招聘板拉取在招职位，按地区、招聘类型和办公方式筛选，并对照个人档案给出匹配参考。",
-      },
-      {
-        image: "/cases/foundmyjob-dashboard.jpg",
-        alt: "FoundMyJob 工作台与求职路径",
-        title: "从档案到投递",
-        description: "工作台把建档、找岗位、准备简历和记录投递收成一条路径，每一步都回到同一个人的真实经历。",
       },
     ],
     highlights: ["真实岗位同步", "档案留在本机", "简历生成后可审核", "投递进度自己记"],
@@ -275,7 +236,6 @@ export const CASES: CaseStudy[] = [
       "跨界探索工作室以项目制方式组织课外学习：学生跨专业申请入室，以小组承接企业命题，教师指导并批改，学院需要掌握真实的参与度与成果。过去招募、组队、课题分配和资料提交分散在表格与聊天工具里，名额、版本与归属都难以核对。系统把学生、教师、管理员三端收进同一条业务链路——申请入室、组队、课题分配、过程资料与最终作业提交、逐版批改、成果展示与统计导出——所有页面读写同一份工作室与课题事实，而不是按门户各建一套数据。前端以 React 19 拆分三套路由与菜单，后端用 Spring Boot 分层实现权限校验与状态流转，表结构由 Flyway 迁移独占管理。",
     tags: ["React 19", "TypeScript", "Spring Boot", "MySQL", "Flyway", "JWT", "MinIO", "Excel 导入"],
     gradient: "from-[#0f5a52] via-[#0b3f3a] to-[#062a26]",
-    cover: "/cases/covers/kuajing.jpg",
     image: "/cases/kuajing-workbench.jpg",
     gallery: [
       {
@@ -330,8 +290,7 @@ export const CASES: CaseStudy[] = [
     overview:
       "CatCare 把摄像头预览、行为识别和互动控制放进同一套产品。主人可以在看护台上确认猫咪是否在场、正在休息还是玩耍，查看当天的活动与互动记录，并通过远程逗玩面板控制方向、激光和急停。识别和界面是分开的：检测负责判断画面里发生了什么，界面只给出克制的看护提示，不把观察说成医疗结论。当前版本先用本地预览和设备模拟把看护、互动和隐私边界跑通，再接入真实硬件。",
     tags: ["React", "Python", "YOLOv8", "FastAPI"],
-    gradient: "from-[#f4efe6] via-[#e7f0ea] to-[#d5e3ea]",
-    cover: "/cases/covers/catcare.jpg",
+    gradient: "from-[#efe6d6] via-[#e0ece3] to-[#c9dbe5]",
     image: "/cases/catcare-home.jpg",
     gallery: [
       {
@@ -383,23 +342,15 @@ export const CASES: CaseStudy[] = [
       "MySQL",
       "REST API",
     ],
-    gradient: "from-indigo-100 via-slate-50 to-blue-100",
-    cover: "/cases/covers/aging.jpg",
-    image: "/cases/smart-aging-admin.png",
+    gradient: "from-[#7d8ff2] via-[#6a7cec] to-[#5163d8]",
+    image: ["/cases/smart-aging-home.png", "/cases/smart-aging-profile.png"],
     gallery: [
       {
-        image: "/cases/smart-aging-home.png",
-        alt: "智慧养老小程序首页",
-        title: "长者服务首页",
+        image: "/cases/smart-aging-admin.png",
+        alt: "乐龄服务平台管理后台控制台",
+        title: "运营管理后台",
         description:
-          "集中呈现健康步行、社区活动、长者学堂与近期活动，为长者提供清晰、低门槛的服务入口。",
-      },
-      {
-        image: "/cases/smart-aging-profile.png",
-        alt: "智慧养老小程序个人中心",
-        title: "个人中心与服务管理",
-        description:
-          "整合个人资料、积分、活动和好友信息，让用户能够在同一入口管理自己的社区养老服务。",
+          "运营人员在 Web 后台集中处理活动审核、广告与用户管理，控制台汇总用户、活动与待审核数量。",
       },
     ],
     highlights: [
@@ -439,8 +390,7 @@ export const CASES: CaseStudy[] = [
     overview:
       "依托声发射无损感知技术，融合 AI 智能算法与物联网实时传输，全天候在线监测压力容器、管道、风电等工业核心设备，辅助捕捉早期微裂纹、疲劳损伤与腐蚀隐患。",
     tags: ["AI", "IoT", "Java", "Flink", "Kafka", "实时监测", "无损检测"],
-    gradient: "from-slate-500 to-zinc-700",
-    cover: "/cases/covers/acoustic.jpg",
+    gradient: "from-[#3a4766] via-[#283149] to-[#171c2a]",
     image: "/cases/acoustic-emission.jpg",
     highlights: ["无损不停机检测", "AI 降噪识别算法", "24h 在线云监测", "多行业适配"],
     capabilities: [

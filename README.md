@@ -65,6 +65,9 @@ npm run dev                   # http://localhost:3000
 
 新增案例时，在 `CASES` 中追加一项并放入配图即可，`/cases` 列表、
 `/cases/[slug]` 详情页与静态参数会自动生成。成员同理。
+列表封面不需要单独作图：由 `gradient` 品牌色加 `image` 截图自动合成。
+`image` 可以是一张桌面截图，也可以是两张手机截图；`gallery` 只放与首图不同的界面，
+没有就省略，详情页会自动隐藏“关键界面细节”区块。
 案例分类筛选在 `src/components/CasesPage.tsx` 的 `CATEGORIES` 中维护。
 
 其余静态文案可直接搜索文件内的中文内容定位：
@@ -102,7 +105,7 @@ src/
 
 public/
 ├── hero/                        # 首屏轮播图片
-├── cases/                       # 案例截图与封面
+├── cases/                       # 案例截图
 ├── team/                        # 成员照片
 ├── about/                       # 服务区块背景图
 └── og-image.png                 # 社交分享预览图（1200×630）
