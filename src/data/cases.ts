@@ -74,6 +74,63 @@ export const CASES: CaseStudy[] = [
     ],
   },
   {
+    slug: "superunknown-courses",
+    title: "SuperUnknown 课程广场",
+    subtitle: "在线教育 · 课程展示与播放",
+    summary:
+      "把工作室 AI 生成的单文件互动课，做成可搜索、可续播的课程中心。",
+    overview:
+      "SuperUnknown 工作室用 SuperUnknownMAIC 把课程做成 AI 互动课堂，导出的却是一个约 7.8MB 的单文件 HTML，原本只能作为文件传来传去。课程广场要解决的，是让每门课都有一个随时能打开的入口：教师在课程管理上传课程包，学生在广场搜索选课、进入详情页全屏上课，下次回来直接从上一幕续播。技术上坚持「不重写播放器」，平台只做外壳——Next.js 静态导出负责广场与详情，iframe 承载单文件课堂，一套代码通过 basePath 同时产出公开站和校园 /plaza/ 子路径。",
+    tags: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "静态导出", "JWT 单点登录"],
+    gradient: "from-[#e8f3f8] via-[#f4f9fc] to-[#d7e6ef]",
+    cover: "/cases/covers/courses.jpg",
+    image: "/cases/courses-home.jpg",
+    gallery: [
+      {
+        image: "/cases/courses-detail.jpg",
+        alt: "课程详情页",
+        title: "课程详情与统计",
+        description:
+          "课程简介、标签与场景、互动关卡、测验、时长四项统计集中在同一页，开始学习后直接进入全屏课堂。",
+      },
+      {
+        image: "/cases/courses-player.jpg",
+        alt: "单文件互动课堂播放界面",
+        title: "离线也能上的课",
+        description:
+          "单文件课堂内嵌幻灯片、互动关卡与测验，保留 AI 老师旁白字幕、场景侧栏与全屏，断网时依然能完整播放。",
+      },
+    ],
+    highlights: [
+      "单文件离线课堂",
+      "断点续播不丢进度",
+      "教师上传即生效",
+      "一套代码两种部署",
+    ],
+    capabilities: [
+      {
+        title: "课程广场",
+        description:
+          "课程卡展示封面、场景数与幻灯片/互动/测验统计，支持按标题、标签与难度搜索，接口不可用时回落到构建期数据。",
+      },
+      {
+        title: "全屏课堂",
+        description:
+          "iframe 整页承载约 8MB 的单文件课堂，保留课堂自带的旁白字幕、场景侧栏与全屏，平台只叠加返回入口与慢网提示。",
+      },
+      {
+        title: "断点续播",
+        description:
+          "播放时持续读取当前场景并定时上报心跳，重新进入自动回到上一幕，我的课程按已看幕数展示进度与学完标记。",
+      },
+      {
+        title: "教师后台",
+        description:
+          "教师可新建课程并上传 200MB 以内的课程包，更换封面、更新版本与软下架；非教师无法进入管理页，后端再次校验角色。",
+      },
+    ],
+  },
+  {
     slug: "procurement-agent",
     title: "西高院采购智能助手",
     subtitle: "采购数字化 · AI Agent",
@@ -205,6 +262,63 @@ export const CASES: CaseStudy[] = [
       {
         title: "投递追踪",
         description: "用准备中、已投递、面试中、已结束记录进度。标记已投递前，需要先完成该岗位简历的审核。",
+      },
+    ],
+  },
+  {
+    slug: "kuajing-studio",
+    title: "跨界探索工作室管理系统",
+    subtitle: "高校教学 · 工作室三端协同",
+    summary:
+      "为西安欧亚学院跨界探索工作室打造的三端协同系统，覆盖入室申请、组队、课题分配、过程提交、批改与成果统计。",
+    overview:
+      "跨界探索工作室以项目制方式组织课外学习：学生跨专业申请入室，以小组承接企业命题，教师指导并批改，学院需要掌握真实的参与度与成果。过去招募、组队、课题分配和资料提交分散在表格与聊天工具里，名额、版本与归属都难以核对。系统把学生、教师、管理员三端收进同一条业务链路——申请入室、组队、课题分配、过程资料与最终作业提交、逐版批改、成果展示与统计导出——所有页面读写同一份工作室与课题事实，而不是按门户各建一套数据。前端以 React 19 拆分三套路由与菜单，后端用 Spring Boot 分层实现权限校验与状态流转，表结构由 Flyway 迁移独占管理。",
+    tags: ["React 19", "TypeScript", "Spring Boot", "MySQL", "Flyway", "JWT", "MinIO", "Excel 导入"],
+    gradient: "from-[#0f5a52] via-[#0b3f3a] to-[#062a26]",
+    cover: "/cases/covers/kuajing.jpg",
+    image: "/cases/kuajing-workbench.jpg",
+    gallery: [
+      {
+        image: "/cases/kuajing-student.jpg",
+        alt: "学生端工作室详情页",
+        title: "学生端：从选择工作室开始",
+        description:
+          "浏览工作室方向与成员名额，提交加入申请；入室后在工作台查看小组、课题与待办，提交过程资料并查看批改结果。",
+      },
+      {
+        image: "/cases/kuajing-topics.jpg",
+        alt: "教师端课题管理列表",
+        title: "教师端：课题全流程",
+        description:
+          "课题从草稿到发布、分配、完成与关闭都有明确状态，列表中直接看到负责人、截止时间与分配对象，进入课题中心处理批改。",
+      },
+    ],
+    highlights: [
+      "三端共用一套业务事实",
+      "课题批量导入与分配",
+      "过程资料按版本留痕",
+      "容量与状态统一校验",
+    ],
+    capabilities: [
+      {
+        title: "三端分权协同",
+        description:
+          "学生、教师、管理员各走独立路由与菜单，权限由后端按角色与工作室负责关系校验，三端读写同一套工作室、课题与提交记录。",
+      },
+      {
+        title: "工作室全周期",
+        description:
+          "创建申请、审批、启停、成员入册与退出串成一条状态线，容量校验放在事务与行锁内，每次变更只追加事件记录。",
+      },
+      {
+        title: "课题批量导入",
+        description:
+          "教师下载 Excel 模板上传，按学号复用或新建账号，逐人确认后按个人或团队分配指导，异常整组暂缓并可导出复核。",
+      },
+      {
+        title: "过程留痕批改",
+        description:
+          "过程资料按版本保序留档，最终作业与成果封面分页签呈现，教师逐版评分评语并推优，学生端同步看到结果与退回意见。",
       },
     ],
   },

@@ -19,6 +19,8 @@ type Filter = (typeof FILTERS)[number]["id"];
 
 // Presentation categories are independent of the shared detail-page content.
 const CATEGORIES: Record<string, Filter[]> = {
+  "kuajing-studio": ["web"],
+  "superunknown-courses": ["web"],
   "found-my-job": ["ai", "web"],
   "catcare-companion": ["ai", "web"],
   "maic-classroom": ["ai", "web"],
